@@ -14,8 +14,6 @@ const  GlyphRoot = ({glyphs}: Props) => {
     const glyphRingDiameter = 440;
     const canvasSize = 1000;
     const halfSize = canvasSize / 2;
-    let centerGlyph
-
 
     let rings
     if(glyphs.Rings){

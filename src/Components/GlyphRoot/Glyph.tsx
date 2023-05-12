@@ -18,7 +18,6 @@ type ChildProps = {
 }
 
 export const LightGlyph = ({x, y, scale}: ChildProps) => {
-    var thickness = 10;
     return (
     <g filter="url(#softGlowLight)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
@@ -39,7 +38,6 @@ export const LightGlyph = ({x, y, scale}: ChildProps) => {
 }
 
 export const FireGlyph = ({x, y, scale}: ChildProps) => {
-    var thickness = 10;
     return (
         <>
         <defs>
@@ -77,7 +75,6 @@ export const FireGlyph = ({x, y, scale}: ChildProps) => {
 }
 
 export const IceGlyph = ({x, y, scale}: ChildProps) => {
-    var thickness = 10;
     return (
     <g filter="url(#softGlowIce)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
@@ -97,7 +94,6 @@ export const IceGlyph = ({x, y, scale}: ChildProps) => {
 }
 
 export const PlantGlyph = ({x, y, scale}: ChildProps) => {
-    var thickness = 10;
     return (
     <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
@@ -118,17 +114,16 @@ export const PlantGlyph = ({x, y, scale}: ChildProps) => {
 
 export const Glyph = ({glyphNode ,x ,y, scale}: Props) => {
     const definedScale = scale ?? 0.2
-    const mapTypeToColor = ()  => {
-        switch(glyphNode.Type){
-            case GlyphType.Fire: return "red";
-            case GlyphType.Ice: return "blue"
-            case GlyphType.Light: return "white"
-            case GlyphType.Plant: return "green"
-        }
-    }
+    // const mapTypeToColor = ()  => {
+    //     switch(glyphNode.Type){
+    //         case GlyphType.Fire: return "red";
+    //         case GlyphType.Ice: return "blue"
+    //         case GlyphType.Light: return "white"
+    //         case GlyphType.Plant: return "green"
+    //     }
+    // }
 
     const getGlyph = () => {
-        // <circle cx={x} cy={y} r="25" fill={mapTypeToColor()} stroke={mapTypeToColor()}/>;
         switch(glyphNode.Type){
             case GlyphType.Fire: return  <FireGlyph x={x} y={y} scale={definedScale}></FireGlyph>
             case GlyphType.Ice: return <IceGlyph x={x} y={y} scale={definedScale}></IceGlyph>
@@ -139,8 +134,6 @@ export const Glyph = ({glyphNode ,x ,y, scale}: Props) => {
     }
 
     return (getGlyph())
-
-    // return (<circle cx={x} cy={y} r="25" fill={mapTypeToColor(glyphType)} stroke={mapTypeToColor(glyphType)}/>)
 }
 
 export default Glyph

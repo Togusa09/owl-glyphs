@@ -1,15 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-import { GlyphType } from './Models/GlyphType';
 import GlyphRoot from './Components/GlyphRoot/GlyphRoot';
-import { Invisibility } from './Data/GlyphDefinitions';
+import { TestGlyph } from './Data/GlyphDefinitions';
+import Menu from './Components/Menu/Menu';
 
 function App() {
+  const [glyph, setGlyph] = useState(TestGlyph)
+
   return (
     <div className="App">
-
-      <GlyphRoot glyphs={ Invisibility }></GlyphRoot>
+      <Menu loadGlyph={(g) => setGlyph(g)}></Menu>
+      <GlyphRoot glyphs={ glyph }></GlyphRoot>
 
       {/* <GlyphRoot glyphs={
         {
