@@ -8,7 +8,7 @@ export const Invisibility : GlyphCollectionModel = {
             Offset: -45,
             Nodes:
             [
-                { Type: GlyphType.Empty},
+                { Type: GlyphType.Blank},
                 { Type: GlyphType.Ice},
                 { Type: GlyphType.Ice},
                 { Type: GlyphType.Light}
@@ -17,7 +17,7 @@ export const Invisibility : GlyphCollectionModel = {
     ]
 }
 
-export const TestGlyph: GlyphCollectionModel = {
+export const TestGlyph : GlyphCollectionModel = {
     CenterGlyph: { Type : GlyphType.Fire },
     Rings : [
       { 

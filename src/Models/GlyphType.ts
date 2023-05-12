@@ -1,5 +1,5 @@
 export enum GlyphType{
-    Empty,
+    Blank,
     Light,
     Ice,
     Plant,

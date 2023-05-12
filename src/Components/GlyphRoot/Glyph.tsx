@@ -129,7 +129,7 @@ export const Glyph = ({glyphNode ,x ,y, scale}: Props) => {
             case GlyphType.Ice: return <IceGlyph x={x} y={y} scale={definedScale}></IceGlyph>
             case GlyphType.Light: return <LightGlyph x={x} y={y} scale={definedScale}></LightGlyph>
             case GlyphType.Plant: return <PlantGlyph x={x} y={y} scale={definedScale}></PlantGlyph>
-            case GlyphType.Empty: return <></>
+            case GlyphType.Blank: return <></>
         }
     }
 

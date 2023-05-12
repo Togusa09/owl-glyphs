@@ -2,6 +2,7 @@ import './Glyphs.css'
 import { GlyphRing } from "./GlyphRing";
 import Glyph from "./Glyph";
 import { GlyphCollectionModel } from "../../Models/GlyphCollection";
+import { Box } from '@mui/material';
 
 type Props = {
     //children: React.ReactElement | React.ReactElement[]
@@ -30,20 +31,29 @@ const  GlyphRoot = ({glyphs}: Props) => {
     }    
 
     return (
-        <svg fill="gray" viewBox="0 0 1000 1000" style={{width:'40%'}}>
-            <rect width='100%' height='100%' fill="white"></rect>
-            {
-                glyphs.CenterGlyph && <Glyph 
-                                            glyphNode={glyphs.CenterGlyph} 
-                                            x={halfSize}
-                                            y={halfSize}
-                                            scale={0.4}
-                                        ></Glyph>            
-            }
-            {
-                glyphs.Rings && rings
-            }
-        </svg>
+        <Box sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+            height: '80vh'
+          }}>
+            <svg fill="gray" viewBox="0 0 1000 1000" style={{width:'40%'}}>
+                <rect width='100%' height='100%' fill="white"></rect>
+                {
+                    glyphs.CenterGlyph && <Glyph 
+                                                glyphNode={glyphs.CenterGlyph} 
+                                                x={halfSize}
+                                                y={halfSize}
+                                                scale={0.4}
+                                            ></Glyph>            
+                }
+                {
+                    glyphs.Rings && rings
+                }
+            </svg>
+        </Box>
     )
 }
 
