@@ -17,6 +17,33 @@ export const Invisibility : GlyphCollectionModel = {
     ]
 }
 
+export const SafetyHover : GlyphCollectionModel = {
+  CenterGlyph: { Type: GlyphType.Light},
+  Rings: [
+      { 
+          Offset: -45,
+          Nodes:
+          [
+              { Type: GlyphType.Ice},
+              { Type: GlyphType.Fire},
+          ] 
+      }
+  ]
+}
+
+export const SleepMist : GlyphCollectionModel = {
+  Rings: [
+      { 
+          //Offset: -45,
+          Nodes:
+          [
+            { Type: GlyphType.Ice},
+            { Type: GlyphType.Fire}
+          ] 
+      }
+  ]
+}
+
 export const TestGlyph : GlyphCollectionModel = {
     CenterGlyph: { Type : GlyphType.Fire },
     Rings : [
