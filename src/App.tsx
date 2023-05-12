@@ -29,13 +29,33 @@ function App() {
       <GlyphRoot glyphs={GlyphType.Plant}></GlyphRoot> */}
 
       {/* <GlyphRoot glyphs={[GlyphType.Fire, GlyphType.Light, GlyphType.Plant, GlyphType.Ice]}></GlyphRoot> */}
-      <GlyphRoot glyphs={
+      {/* <GlyphRoot glyphs={
         [
           [GlyphType.Fire, GlyphType.Light, GlyphType.Plant, GlyphType.Ice],
           [GlyphType.Fire, GlyphType.Light, GlyphType.Light, GlyphType.Plant, GlyphType.Ice],
-          [GlyphType.Fire, GlyphType.Light, GlyphType.Plant, ]
+          [GlyphType.Fire, GlyphType.Light, GlyphType.Plant ]
         ]
-        }></GlyphRoot>
+        }></GlyphRoot> */}
+      <GlyphRoot glyphs={
+        {
+          Rings : [
+            { 
+              Nodes : [
+                { Type : GlyphType.Fire },
+                { Type : GlyphType.Ice },
+                { Type : GlyphType.Light },
+                { Type : GlyphType.Plant }
+              ]
+            },
+            { 
+              Nodes : [
+                { Type : GlyphType.Fire },
+                { Type : GlyphType.Plant }
+              ]
+            }
+          ]
+        }
+      }></GlyphRoot>
       
     </div>
   );

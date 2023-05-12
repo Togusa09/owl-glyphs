@@ -1,8 +1,9 @@
+import { GlyphNodeModel } from "../Models/GlyphCollection"
 import { GlyphType } from "../Models/GlyphType"
 
 //export const GlyphRing = ({children, size}: Props) => {
 type Props = {
-    glyphType: GlyphType
+    glyphNode: GlyphNodeModel
     x: number
     y: number
 }
@@ -18,7 +19,7 @@ export const LightGlyph = ({x, y}: ChildProps) => {
     var thickness = 10;
     return (
     <g filter="url(#softGlowLight)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
-        <circle cx="0" cy="0" r="250" fill="gray"/>
+        <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="0" y1="-50" x2="0" y2="200" />
         {/* <!-- center --> */}
@@ -51,8 +52,8 @@ export const FireGlyph = ({x, y}: ChildProps) => {
                 </feMerge>
             </filter> */}
         </defs>
-        <g filter="url(#softGlowFire)" stroke="black" fill="none" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
-            <circle cx="0" cy="0" r="250" fill="gray" />
+        <g filter="url(#softGlowFire)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+            <circle cx="0" cy="0" r="250" className="glyphBackground"/>
             <circle cx="0" cy="0" r="200"/>
             <circle cx="0" cy="100" r="100" />
             {/* <!-- big circle --> */}
@@ -76,8 +77,8 @@ export const FireGlyph = ({x, y}: ChildProps) => {
 export const IceGlyph = ({x, y}: ChildProps) => {
     var thickness = 10;
     return (
-    <g filter="url(#softGlowIce)" stroke="black" fill="none" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
-        <circle cx="0" cy="0" r="250" fill="gray"/>
+    <g filter="url(#softGlowIce)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+        <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="-180" y1="80" x2="180" y2="80"/>
         {/* <!-- crossbar --> */}
@@ -96,27 +97,26 @@ export const IceGlyph = ({x, y}: ChildProps) => {
 export const PlantGlyph = ({x, y}: ChildProps) => {
     var thickness = 10;
     return (
-    <g filter="url(#softGlowPlant)" stroke="black" fill="none" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
-        <circle cx="0" cy="0" r="250" fill="gray"/>
+    <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+        <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
-        <line x1="0" y1="-50" x2="0" y2="200" />
-        {/* <!-- center --> */}
-        <line x1="-180" y1="80" x2="180" y2="80"/>
-        {/* <!-- crossbar --> */}
-        <circle cx="0" cy="-90" r="40"/>
-        <polyline points="-180 80 0 -50 180 80"></polyline>
-        <polyline points="-39 -100 0 -200 39 -100"></polyline>
-        {/* <!-- hat -->
-        <!-- two lines --> */}
-        <line x1="-30" y1="15" x2="30" y2="-10" />
-        <line x1="-30" y1="40" x2="30" y2="15"  />
+        {/* <!-- Flower --> */}
+        <polyline points="0 -80 -50 -150 50 -150 0 -80" />
+        <line x1="-29" y1="-120" x2="29" y2="-120" />
+        {/* <!-- Stem --> */}
+        <line x1="0" y1="40" x2="0" y2="-80"/>
+        <line x1="0" y1="40" x2="-40" y2="-5"/>
+        <line x1="0" y1="40" x2=" 40" y2="-5"/>
+        {/* <!-- Root --> */}
+        <circle cx="0" cy="90" r="7" style={{strokeWidth: '5px;'}} />
+        <circle cx="0" cy="90" r="50" />
       </g>
     )
 }
 
-export const Glyph = ({glyphType,x ,y}: Props) => {
+export const Glyph = ({glyphNode ,x ,y}: Props) => {
     const mapTypeToColor = ()  => {
-        switch(glyphType){
+        switch(glyphNode.Type){
             case GlyphType.Fire: return "red";
             case GlyphType.Ice: return "blue"
             case GlyphType.Light: return "white"
@@ -126,7 +126,7 @@ export const Glyph = ({glyphType,x ,y}: Props) => {
 
     const getGlyph = () => {
         // <circle cx={x} cy={y} r="25" fill={mapTypeToColor()} stroke={mapTypeToColor()}/>;
-        switch(glyphType){
+        switch(glyphNode.Type){
             case GlyphType.Fire: return  <FireGlyph x={x} y={y}></FireGlyph>
             case GlyphType.Ice: return <IceGlyph x={x} y={y}></IceGlyph>
             case GlyphType.Light: return <LightGlyph x={x} y={y}></LightGlyph>
@@ -134,8 +134,6 @@ export const Glyph = ({glyphType,x ,y}: Props) => {
         }
     }
 
-    var glyph = getGlyph();
-     
     return (getGlyph())
 
     // return (<circle cx={x} cy={y} r="25" fill={mapTypeToColor(glyphType)} stroke={mapTypeToColor(glyphType)}/>)
