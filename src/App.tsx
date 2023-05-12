@@ -1,11 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import GlyphRoot from './Components/GlyphRoot';
+import Glyph from './Components/Glyph';
+import GlyphRing from './Components/GlypRing';
+import { GlyphType } from './Models/GlyphType';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -18,7 +22,21 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      {/* <GlyphRoot glyphs={GlyphType.Ice}></GlyphRoot>
+      <GlyphRoot glyphs={GlyphType.Fire}></GlyphRoot>
+      <GlyphRoot glyphs={GlyphType.Light}></GlyphRoot>
+      <GlyphRoot glyphs={GlyphType.Plant}></GlyphRoot> */}
+
+      {/* <GlyphRoot glyphs={[GlyphType.Fire, GlyphType.Light, GlyphType.Plant, GlyphType.Ice]}></GlyphRoot> */}
+      <GlyphRoot glyphs={
+        [
+          [GlyphType.Fire, GlyphType.Light, GlyphType.Plant, GlyphType.Ice],
+          [GlyphType.Fire, GlyphType.Light, GlyphType.Light, GlyphType.Plant, GlyphType.Ice],
+          [GlyphType.Fire, GlyphType.Light, GlyphType.Plant, ]
+        ]
+        }></GlyphRoot>
+      
     </div>
   );
 }
