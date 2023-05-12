@@ -1,9 +1,10 @@
-import { GlyphNodeModel } from "../Models/GlyphCollection"
-import { GlyphType } from "../Models/GlyphType"
+import { GlyphNodeModel } from "../../Models/GlyphCollection"
+import { GlyphType } from "../../Models/GlyphType"
 
 //export const GlyphRing = ({children, size}: Props) => {
 type Props = {
     glyphNode: GlyphNodeModel
+    scale?: number,
     x: number
     y: number
 }
@@ -13,12 +14,13 @@ type Props = {
 type ChildProps = {
     x: number
     y: number
+    scale: number
 }
 
-export const LightGlyph = ({x, y}: ChildProps) => {
+export const LightGlyph = ({x, y, scale}: ChildProps) => {
     var thickness = 10;
     return (
-    <g filter="url(#softGlowLight)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+    <g filter="url(#softGlowLight)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="0" y1="-50" x2="0" y2="200" />
@@ -36,7 +38,7 @@ export const LightGlyph = ({x, y}: ChildProps) => {
     )
 }
 
-export const FireGlyph = ({x, y}: ChildProps) => {
+export const FireGlyph = ({x, y, scale}: ChildProps) => {
     var thickness = 10;
     return (
         <>
@@ -52,7 +54,7 @@ export const FireGlyph = ({x, y}: ChildProps) => {
                 </feMerge>
             </filter> */}
         </defs>
-        <g filter="url(#softGlowFire)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+        <g filter="url(#softGlowFire)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
             <circle cx="0" cy="0" r="250" className="glyphBackground"/>
             <circle cx="0" cy="0" r="200"/>
             <circle cx="0" cy="100" r="100" />
@@ -74,10 +76,10 @@ export const FireGlyph = ({x, y}: ChildProps) => {
     )
 }
 
-export const IceGlyph = ({x, y}: ChildProps) => {
+export const IceGlyph = ({x, y, scale}: ChildProps) => {
     var thickness = 10;
     return (
-    <g filter="url(#softGlowIce)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+    <g filter="url(#softGlowIce)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="-180" y1="80" x2="180" y2="80"/>
@@ -94,10 +96,10 @@ export const IceGlyph = ({x, y}: ChildProps) => {
     )
 }
 
-export const PlantGlyph = ({x, y}: ChildProps) => {
+export const PlantGlyph = ({x, y, scale}: ChildProps) => {
     var thickness = 10;
     return (
-    <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(0.2)"}>
+    <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         {/* <!-- Flower --> */}
@@ -114,7 +116,8 @@ export const PlantGlyph = ({x, y}: ChildProps) => {
     )
 }
 
-export const Glyph = ({glyphNode ,x ,y}: Props) => {
+export const Glyph = ({glyphNode ,x ,y, scale}: Props) => {
+    const definedScale = scale ?? 0.2
     const mapTypeToColor = ()  => {
         switch(glyphNode.Type){
             case GlyphType.Fire: return "red";
@@ -127,10 +130,11 @@ export const Glyph = ({glyphNode ,x ,y}: Props) => {
     const getGlyph = () => {
         // <circle cx={x} cy={y} r="25" fill={mapTypeToColor()} stroke={mapTypeToColor()}/>;
         switch(glyphNode.Type){
-            case GlyphType.Fire: return  <FireGlyph x={x} y={y}></FireGlyph>
-            case GlyphType.Ice: return <IceGlyph x={x} y={y}></IceGlyph>
-            case GlyphType.Light: return <LightGlyph x={x} y={y}></LightGlyph>
-            case GlyphType.Plant: return <PlantGlyph x={x} y={y}></PlantGlyph>
+            case GlyphType.Fire: return  <FireGlyph x={x} y={y} scale={definedScale}></FireGlyph>
+            case GlyphType.Ice: return <IceGlyph x={x} y={y} scale={definedScale}></IceGlyph>
+            case GlyphType.Light: return <LightGlyph x={x} y={y} scale={definedScale}></LightGlyph>
+            case GlyphType.Plant: return <PlantGlyph x={x} y={y} scale={definedScale}></PlantGlyph>
+            case GlyphType.Empty: return <></>
         }
     }
 

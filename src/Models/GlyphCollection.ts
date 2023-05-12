@@ -7,6 +7,7 @@ export interface GlyphCollectionModel{
 
 export interface GlyphRingModel{
     Nodes: GlyphNodeModel[]
+    Offset?: number
 }
 
 export interface GlyphNodeModel{

@@ -1,0 +1,68 @@
+  
+  main {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .glyphs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+  }
+  
+  .glyph {
+    /* Using these to resize the glyphs */
+    width: 500px;
+    height: 500px;
+  }
+  
+  svg {
+    /*border: 1px solid #f00; */
+    fill:  none;
+    stroke: #fff;
+    stroke-width: 10px;
+  }
+  
+  /* .glyph > svg circle {} */
+  .glyph line,
+  .glyph polyline,
+  .glyph path
+  {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  .glyphBackground
+  {
+    fill: white;
+  }
+  
+  /*
+  .light {}
+  .ice {}
+  .plant {}
+  .fire {}
+  */
+  
+  #special {
+      /*border: 1px solid #f00; */
+      position: fixed;
+      background: transparent;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      width: 150px;
+      height: 150px;
+  }
+  
+  #lego_eda {
+    width: 100%;
+    transform: scale(60%);
+    transform-origin: top right;
+    /*
+    width: 90%;
+    height: 90%;
+    */
+  }
