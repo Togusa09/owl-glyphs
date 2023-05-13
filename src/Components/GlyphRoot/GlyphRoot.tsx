@@ -13,19 +13,21 @@ type Props = {
 const  GlyphRoot = ({glyphs}: Props) => {
 
     const glyphRingDiameter = 440;
-    const canvasSize = 1000;
+    const canvasSize = 1200;
     const halfSize = canvasSize / 2;
+    const centerOffset = 30
 
     let rings
     if(glyphs.Rings){
-        var ringSpacing = (glyphRingDiameter / glyphs.Rings.length)
+        var ringSpacing = ((glyphRingDiameter - centerOffset) / glyphs.Rings.length)
         rings = glyphs.Rings.map((x, i) => {
             return <GlyphRing 
                     glyphNodes={x.Nodes}
-                    size={(i + 1) * ringSpacing}
+                    size={((i + 1) * ringSpacing) + centerOffset}
                     x={halfSize}
                     y={halfSize}
                     offset={x.Offset}
+                    totalRings = {glyphs.Rings!.length}
                     ></GlyphRing>
         })
     }    
@@ -39,14 +41,14 @@ const  GlyphRoot = ({glyphs}: Props) => {
             minWidth: 300,
             height: '80vh'
           }}>
-            <svg fill="gray" viewBox="0 0 1000 1000" style={{width:'40%'}}>
+            <svg fill="gray" viewBox="0 0 1200 1200" style={{width:'40%'}}>
                 <rect width='100%' height='100%' fill="white"></rect>
                 {
                     glyphs.CenterGlyph && <Glyph 
                                                 glyphNode={glyphs.CenterGlyph} 
                                                 x={halfSize}
                                                 y={halfSize}
-                                                scale={0.4}
+                                                scale={0.6}
                                             ></Glyph>            
                 }
                 {

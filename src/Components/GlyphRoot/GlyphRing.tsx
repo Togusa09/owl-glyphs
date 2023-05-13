@@ -8,9 +8,10 @@ type Props = {
     y: number
     offset?: number
     glyphNodes: GlyphNodeModel[]
+    totalRings: number
 }
 
-export const GlyphRing = ({glyphNodes, size, index, x, y, offset}: Props) => {
+export const GlyphRing = ({glyphNodes, size, index, x, y, offset, totalRings}: Props) => {
     console.log("Test")
     index = index ?? 0
     
@@ -19,6 +20,8 @@ export const GlyphRing = ({glyphNodes, size, index, x, y, offset}: Props) => {
     var offsetAngle = (offset ?? 0) * (Math.PI / 180)
     var totalAngle = Math.PI * 2;
 
+    const ringNodeScale = (1 / totalRings) * 0.55
+
     return (
         <>
             <circle cx={x} cy={y} r={size} stroke="black" stroke-width="2" fill="none"/>
@@ -26,7 +29,7 @@ export const GlyphRing = ({glyphNodes, size, index, x, y, offset}: Props) => {
                 var glyphX = size * Math.cos((totalAngle / glyphCount * i) + offsetAngle)
                 var glyphY = size * Math.sin((totalAngle / glyphCount * i) + offsetAngle)
             
-                return (<Glyph glyphNode={glyph} x={x + glyphX} y={y + glyphY}></Glyph>)
+                return (<Glyph glyphNode={glyph} x={x + glyphX} y={y + glyphY} scale={ringNodeScale}></Glyph>)
             })
             }
         </>
