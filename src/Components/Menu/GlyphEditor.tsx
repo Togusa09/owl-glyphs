@@ -2,7 +2,6 @@ import { Grid } from "@mui/material"
 import { GlyphCollectionModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 import GlyphSelector from "./GlyphSelector"
-import { useState } from "react"
 
 type Props = {
     glyphs: GlyphCollectionModel
