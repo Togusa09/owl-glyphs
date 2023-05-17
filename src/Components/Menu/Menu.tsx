@@ -18,7 +18,10 @@ export const Menu = (props: Props) => {
         height: '80vh'
       }}>
         <SavedGlyphMenu loadGlyph={(g) => props.loadGlyph(g)}></SavedGlyphMenu>
-        <GlyphEditor glyphs={props.currentGlyph}></GlyphEditor>
+        <GlyphEditor glyphs={props.currentGlyph} onUpdate={g => 
+           { console.log(JSON.stringify(g))
+            props.loadGlyph(g)}
+            } ></GlyphEditor>
     </Box>)
 }
 

@@ -1,12 +1,33 @@
 import { Grid } from "@mui/material"
 import { GlyphCollectionModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
+import GlyphSelector from "./GlyphSelector"
+import { useState } from "react"
 
 type Props = {
     glyphs: GlyphCollectionModel
+    onUpdate: (val: GlyphCollectionModel) => void
 }
 
-export const GlyphEditor = ({glyphs}: Props) => {
+export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
+    const updateVal = (ri: number, ni: number, val: GlyphType) =>{
+        if (!glyphs.Rings) return
+
+        var newGlyphs =  JSON.parse(JSON.stringify(glyphs));
+        newGlyphs!.Rings[ri].Nodes[ni].Type = val
+        
+        onUpdate(newGlyphs)
+    }
+
+    const updateCenterVal = (val: GlyphType) => {
+        var newGlyphs =  JSON.parse(JSON.stringify(glyphs));
+        newGlyphs!.CenterGlyph.Type = val
+        
+        onUpdate(newGlyphs)
+    }
+
+    var centerGlyph = glyphs.CenterGlyph ?? { Type:  GlyphType.Blank}
+
     return (<>
 
         <Grid container>
@@ -14,12 +35,10 @@ export const GlyphEditor = ({glyphs}: Props) => {
                 Center glyph 
             </Grid>
             <Grid item xs={6}>
-                { 
-                    glyphs.CenterGlyph && GlyphType[glyphs.CenterGlyph?.Type]
-                }
-                {
-                    !glyphs.CenterGlyph && GlyphType[GlyphType.Blank]
-                }
+                <GlyphSelector value={centerGlyph.Type} onChange={(g) => 
+                                        {
+                                            updateCenterVal(g)
+                                        }} ></GlyphSelector>
             </Grid>
             {
                 glyphs.Rings && glyphs.Rings.map((r, ri) => {
@@ -29,10 +48,15 @@ export const GlyphEditor = ({glyphs}: Props) => {
                             Ring {ri}
                         </Grid>
                         {
-                            r.Nodes.map((n) =>{
+                            r.Nodes.map((n, ni) =>{
                                 return <>
                                     <Grid item xs={6}></Grid>
                                     <Grid item xs={6}>{GlyphType[n.Type]}</Grid>
+                                    <Grid item xs={6}></Grid>
+                                    <Grid item xs={6}><GlyphSelector value={n.Type} onChange={(g) => 
+                                        {
+                                            updateVal(ri, ni, g)
+                                        }} ></GlyphSelector></Grid>
                                 </>
                             })
                         } 

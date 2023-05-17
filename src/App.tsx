@@ -33,7 +33,11 @@ function App() {
         <Grid container>
           <Grid item xs={1} />
           <Grid item xs={2} >
-            <Menu loadGlyph={(g) => setGlyph(g)} currentGlyph={glyph}></Menu>
+            <Menu loadGlyph={
+              (g) => {
+                setGlyph(g)}
+              } 
+              currentGlyph={glyph}></Menu>
           </Grid>
           <Grid item xs={8}>
             <GlyphRoot glyphs={ glyph }></GlyphRoot>
