@@ -1,5 +1,6 @@
 import { MenuItem, Select } from "@mui/material"
 import { GlyphType } from "../../Models/GlyphType"
+import { useState } from "react"
 
 type Props = {
     value: GlyphType
@@ -7,12 +8,15 @@ type Props = {
 }
 
 export const GlyphSelector = ({value, onChange}: Props) => {
+    //var [glyphValue, setGlyphValue] = useState(value);
+
     return (
         <Select
             value={value}
             onChange={(e) => 
                 {
                     console.log("Selected new glyph " + e.target.value)
+                    //setGlyphValue({...glyphValue, })
                     onChange(e.target.value as GlyphType)
                 }
             }

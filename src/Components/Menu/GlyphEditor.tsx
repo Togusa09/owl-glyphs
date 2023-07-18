@@ -1,7 +1,70 @@
 import { Grid } from "@mui/material"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
+import { GlyphCollectionModel, GlyphNodeModel, GlyphRingModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 import GlyphSelector from "./GlyphSelector"
+import { Fragment, useState } from "react"
+import zIndex from "@mui/material/styles/zIndex"
+
+type GlyphRingEditorProps = {
+    value: GlyphRingModel
+    index: number
+    //onUpdate: (val: GlyphRingModel) => void
+}
+
+export const GlyphRingEditor = ({value, index}: GlyphRingEditorProps) => {
+    var [glyphRing, setGlyphRing] = useState(value)
+
+    // var updateStuff = () => {
+    //     useState({
+    //         ...glyphRing,
+    //         Nodes: [
+    //             glyphRing.Nodes
+    //         ]
+    //     })
+    // }
+
+    return (<Fragment key={value.Id}>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={8}> 
+                Ring {index}
+            </Grid>
+            {
+                value.Nodes.map((n, ni) =>{
+                    return <GlyphNodeEditor value={n} onUpdate={ (g) => {
+                        //updateStuff();
+                        // useState({
+                        //     ...glyphRing,
+                        //     Nodes: [
+                        //         glyphRing.Nodes
+                        //     ]
+                        // })
+                    }
+                    }></GlyphNodeEditor>
+                })
+            } 
+        </Fragment>)
+}
+
+type GlyphNodeEditorProps = {
+    value: GlyphNodeModel
+    onUpdate: (val: GlyphNodeModel) => void
+}
+
+export const GlyphNodeEditor = ({value, onUpdate}: GlyphNodeEditorProps) => {
+    var [glyphNode, setGlyphNode] = useState(value);
+
+    return (<Fragment key={glyphNode.Id}>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}>{GlyphType[glyphNode.Type]}</Grid>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}><GlyphSelector value={glyphNode.Type} onChange={(g) => 
+            {
+                setGlyphNode({...glyphNode, Type: g })
+                //updateVal(ri, ni, g)
+                onUpdate(glyphNode)
+            }} ></GlyphSelector></Grid>
+    </Fragment>)
+}
 
 type Props = {
     glyphs: GlyphCollectionModel
@@ -41,25 +104,7 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
             </Grid>
             {
                 glyphs.Rings && glyphs.Rings.map((r, ri) => {
-                    return <>
-                        <Grid item xs={4}></Grid>
-                        <Grid item xs={8}> 
-                            Ring {ri}
-                        </Grid>
-                        {
-                            r.Nodes.map((n, ni) =>{
-                                return <>
-                                    <Grid item xs={6}></Grid>
-                                    <Grid item xs={6}>{GlyphType[n.Type]}</Grid>
-                                    <Grid item xs={6}></Grid>
-                                    <Grid item xs={6}><GlyphSelector value={n.Type} onChange={(g) => 
-                                        {
-                                            updateVal(ri, ni, g)
-                                        }} ></GlyphSelector></Grid>
-                                </>
-                            })
-                        } 
-                    </>
+                    return <GlyphRingEditor value={r} index={ri}></GlyphRingEditor>
                 })
             }
         </Grid>

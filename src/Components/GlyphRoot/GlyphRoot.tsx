@@ -13,7 +13,6 @@ type Props = {
 const  GlyphRoot = ({glyphs}: Props) => {
     console.log("Rendering glyph canvas")
 
-
     const glyphRingDiameter = 440;
     const canvasSize = 1200;
     const halfSize = canvasSize / 2;
@@ -24,29 +23,28 @@ const  GlyphRoot = ({glyphs}: Props) => {
         var ringSpacing = ((glyphRingDiameter - centerOffset) / glyphs.Rings.length)
         rings = glyphs.Rings.map((x, i) => {
             return <GlyphRing 
-                    key = {i}
-                    glyphNodes={x.Nodes}
-                    size={((i + 1) * ringSpacing) + centerOffset}
-                    x={halfSize}
-                    y={halfSize}
-                    offset={x.Offset}
-                    totalRings = {glyphs.Rings!.length}
+                        key = {x.Id}
+                        glyphNodes={x.Nodes}
+                        size={((i + 1) * ringSpacing) + centerOffset}
+                        x={halfSize}
+                        y={halfSize}
+                        offset={x.Offset}
+                        totalRings = {glyphs.Rings!.length}
                     ></GlyphRing>
         })
     }    
 
-
-
     return (
         <Box sx={{
             bgcolor: 'background.paper',
-            boxShadow: 1,
-            borderRadius: 2,
+            //boxShadow: 0,
+            //borderRadius: 2,
+            border: 0,
             p: 2,
             minWidth: 300,
             height: '80vh'
           }}>
-            <svg fill="gray" viewBox="0 0 1200 1200" style={{width:'40%'}}>
+            <svg fill="gray" viewBox="0 0 1200 1200" style={{height:'100%'}}>
                 <rect width='100%' height='100%' fill="white"></rect>
                 {
                     glyphs.CenterGlyph && <Glyph 

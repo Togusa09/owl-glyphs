@@ -2,30 +2,32 @@ import { GlyphCollectionModel } from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
 export const Invisibility : GlyphCollectionModel = {
-    CenterGlyph: { Type: GlyphType.Light},
+    CenterGlyph: { Id: 1, Type: GlyphType.Light},
     Rings: [
         { 
+            Id: 1,
             Offset: -45,
             Nodes:
             [
-                { Type: GlyphType.Blank},
-                { Type: GlyphType.Ice},
-                { Type: GlyphType.Ice},
-                { Type: GlyphType.Light}
+                { Id: 2, Type: GlyphType.Blank},
+                { Id: 3,Type: GlyphType.Ice},
+                { Id: 4,Type: GlyphType.Ice},
+                { Id: 5, Type: GlyphType.Light}
             ] 
         }
     ]
 }
 
 export const SafetyHover : GlyphCollectionModel = {
-  CenterGlyph: { Type: GlyphType.Light},
+  CenterGlyph: { Id: 1, Type: GlyphType.Light},
   Rings: [
       { 
           Offset: -45,
+          Id: 1,
           Nodes:
           [
-              { Type: GlyphType.Ice},
-              { Type: GlyphType.Fire},
+              { Id: 2, Type: GlyphType.Ice},
+              { Id: 3, Type: GlyphType.Fire},
           ] 
       }
   ]
@@ -34,31 +36,34 @@ export const SafetyHover : GlyphCollectionModel = {
 export const SleepMist : GlyphCollectionModel = {
   Rings: [
       { 
+          Id: 1,
           //Offset: -45,
           Nodes:
           [
-            { Type: GlyphType.Ice},
-            { Type: GlyphType.Fire}
+            { Id: 1, Type: GlyphType.Ice},
+            { Id: 2, Type: GlyphType.Fire}
           ] 
       }
   ]
 }
 
 export const TestGlyph : GlyphCollectionModel = {
-    CenterGlyph: { Type : GlyphType.Fire },
+    CenterGlyph: { Id: 1, Type : GlyphType.Fire },
     Rings : [
       { 
+        Id: 1,
         Nodes : [
-          { Type : GlyphType.Fire },
-          { Type : GlyphType.Ice },
-          { Type : GlyphType.Light },
-          { Type : GlyphType.Plant }
+          { Id: 2, Type : GlyphType.Fire },
+          { Id: 3, Type : GlyphType.Ice },
+          { Id: 4, Type : GlyphType.Light },
+          { Id: 5, Type : GlyphType.Plant }
         ]
       },
       { 
+        Id: 2,
         Nodes : [
-          { Type : GlyphType.Fire },
-          { Type : GlyphType.Plant }
+          { Id: 6, Type : GlyphType.Fire },
+          { Id: 7, Type : GlyphType.Plant }
         ]
       }
     ]
