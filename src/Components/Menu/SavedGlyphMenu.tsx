@@ -3,15 +3,15 @@ import { GlyphCollectionModel } from "../../Models/GlyphCollection"
 import Button from '@mui/material/Button';
 
 type Props = {
-    loadGlyph: (gc: GlyphCollectionModel) => void
+    onGlyphLoaded: (gc: GlyphCollectionModel) => void
 }
 
-export const SavedGlyphMenu = (props: Props) => {
+export const SavedGlyphMenu = ({onGlyphLoaded}: Props) => {
     return (<div className="save-glyph-menu">
-        <Button onClick={() => props.loadGlyph(Invisibility)} >Invisibility</Button>
-        <Button onClick={() => props.loadGlyph(SleepMist)}>Sleep Mist</Button>
-        <Button onClick={() => props.loadGlyph(SafetyHover)}>Safety Hover</Button>
-        <Button onClick={() => props.loadGlyph(TestGlyph)}>Test Glyph</Button>
+        <Button onClick={() => onGlyphLoaded(Invisibility)} >Invisibility</Button>
+        <Button onClick={() => onGlyphLoaded(SleepMist)}>Sleep Mist</Button>
+        <Button onClick={() => onGlyphLoaded(SafetyHover)}>Safety Hover</Button>
+        <Button onClick={() => onGlyphLoaded(TestGlyph)}>Test Glyph</Button>
     </div>)
 }
 

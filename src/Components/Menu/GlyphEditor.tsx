@@ -2,26 +2,15 @@ import { Grid } from "@mui/material"
 import { GlyphCollectionModel, GlyphNodeModel, GlyphRingModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 import GlyphSelector from "./GlyphSelector"
-import { Fragment, useState } from "react"
-import zIndex from "@mui/material/styles/zIndex"
+import { Fragment } from "react"
 
 type GlyphRingEditorProps = {
     value: GlyphRingModel
     index: number
-    //onUpdate: (val: GlyphRingModel) => void
+    onUpdate: (val: GlyphRingModel) => void
 }
 
-export const GlyphRingEditor = ({value, index}: GlyphRingEditorProps) => {
-    var [glyphRing, setGlyphRing] = useState(value)
-
-    // var updateStuff = () => {
-    //     useState({
-    //         ...glyphRing,
-    //         Nodes: [
-    //             glyphRing.Nodes
-    //         ]
-    //     })
-    // }
+export const GlyphRingEditor = ({value, index, onUpdate}: GlyphRingEditorProps) => {
 
     return (<Fragment key={value.Id}>
             <Grid item xs={4}></Grid>
@@ -30,14 +19,18 @@ export const GlyphRingEditor = ({value, index}: GlyphRingEditorProps) => {
             </Grid>
             {
                 value.Nodes.map((n, ni) =>{
-                    return <GlyphNodeEditor value={n} onUpdate={ (g) => {
-                        //updateStuff();
-                        // useState({
-                        //     ...glyphRing,
-                        //     Nodes: [
-                        //         glyphRing.Nodes
-                        //     ]
-                        // })
+                    return <GlyphNodeEditor value={n} onUpdate={ (updatedGlyph) => {
+                        var t = {
+                            ...value,
+                            Nodes: value.Nodes.map(node => {
+                                if (node.Id != updatedGlyph.Id){
+                                    return node
+                                }
+
+                                return updatedGlyph
+                            })
+                        }
+                        onUpdate(t)
                     }
                     }></GlyphNodeEditor>
                 })
@@ -51,17 +44,14 @@ type GlyphNodeEditorProps = {
 }
 
 export const GlyphNodeEditor = ({value, onUpdate}: GlyphNodeEditorProps) => {
-    var [glyphNode, setGlyphNode] = useState(value);
-
-    return (<Fragment key={glyphNode.Id}>
+    return (<Fragment key={value.Id}>
         <Grid item xs={6}></Grid>
-        <Grid item xs={6}>{GlyphType[glyphNode.Type]}</Grid>
+        <Grid item xs={6}>{GlyphType[value.Type]}</Grid>
         <Grid item xs={6}></Grid>
-        <Grid item xs={6}><GlyphSelector value={glyphNode.Type} onChange={(g) => 
+        <Grid item xs={6}><GlyphSelector value={value.Type} onChange={(glyph) => 
             {
-                setGlyphNode({...glyphNode, Type: g })
-                //updateVal(ri, ni, g)
-                onUpdate(glyphNode)
+                var t = {...value, Type: glyph }
+                onUpdate(t)
             }} ></GlyphSelector></Grid>
     </Fragment>)
 }
@@ -72,20 +62,15 @@ type Props = {
 }
 
 export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
-    const updateVal = (ri: number, ni: number, val: GlyphType) =>{
-        if (!glyphs.Rings) return
-
-        var newGlyphs =  JSON.parse(JSON.stringify(glyphs));
-        newGlyphs!.Rings[ri].Nodes[ni].Type = val
-        
-        onUpdate(newGlyphs)
-    }
-
     const updateCenterVal = (val: GlyphType) => {
-        var newGlyphs =  JSON.parse(JSON.stringify(glyphs));
-        newGlyphs!.CenterGlyph.Type = val
-        
-        onUpdate(newGlyphs)
+        const updatedModel = {
+            ...glyphs,
+            CenterGlyph: {
+                ...(glyphs.CenterGlyph!),
+                Type: val
+            }
+        }
+        onUpdate(updatedModel)
     }
 
     var centerGlyph = glyphs.CenterGlyph ?? { Type:  GlyphType.Blank}
@@ -104,7 +89,20 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
             </Grid>
             {
                 glyphs.Rings && glyphs.Rings.map((r, ri) => {
-                    return <GlyphRingEditor value={r} index={ri}></GlyphRingEditor>
+                    return <GlyphRingEditor value={r} index={ri} 
+                        onUpdate={(val) => { 
+                            const t = {
+                                ...glyphs,
+                                Rings: glyphs.Rings?.map(glyph => {
+                                    if (glyph.Id != val.Id) return glyph
+
+                                    return {
+                                        ...val
+                                    }
+                                })
+                            }
+                            onUpdate(t)
+                        }} />
                 })
             }
         </Grid>

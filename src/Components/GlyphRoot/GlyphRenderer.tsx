@@ -10,7 +10,7 @@ type Props = {
     glyphs: GlyphCollectionModel
 }
 
-const  GlyphRoot = ({glyphs}: Props) => {
+const GlyphRenderer = ({glyphs}: Props) => {
     console.log("Rendering glyph canvas")
 
     const glyphRingDiameter = 440;
@@ -37,8 +37,6 @@ const  GlyphRoot = ({glyphs}: Props) => {
     return (
         <Box sx={{
             bgcolor: 'background.paper',
-            //boxShadow: 0,
-            //borderRadius: 2,
             border: 0,
             p: 2,
             minWidth: 300,
@@ -62,4 +60,4 @@ const  GlyphRoot = ({glyphs}: Props) => {
     )
 }
 
-export default GlyphRoot;
+export default GlyphRenderer;
