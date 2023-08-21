@@ -1,7 +1,6 @@
 import { GlyphNodeModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 
-//export const GlyphRing = ({children, size}: Props) => {
 type Props = {
     glyphNode: GlyphNodeModel
     scale?: number,

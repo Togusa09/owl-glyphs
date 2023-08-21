@@ -1,59 +1,13 @@
-import { Grid } from "@mui/material"
-import { GlyphCollectionModel, GlyphNodeModel, GlyphRingModel } from "../../Models/GlyphCollection"
+import { Button, Grid } from "@mui/material"
+import { GlyphCollectionModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 import GlyphSelector from "./GlyphSelector"
-import { Fragment } from "react"
+import { GlyphRingEditor } from "./GlyphRingEditor"
 
-type GlyphRingEditorProps = {
-    value: GlyphRingModel
-    index: number
-    onUpdate: (val: GlyphRingModel) => void
-}
-
-export const GlyphRingEditor = ({value, index, onUpdate}: GlyphRingEditorProps) => {
-
-    return (<Fragment key={value.Id}>
-            <Grid item xs={4}></Grid>
-            <Grid item xs={8}> 
-                Ring {index}
-            </Grid>
-            {
-                value.Nodes.map((n, ni) =>{
-                    return <GlyphNodeEditor value={n} onUpdate={ (updatedGlyph) => {
-                        var t = {
-                            ...value,
-                            Nodes: value.Nodes.map(node => {
-                                if (node.Id !== updatedGlyph.Id){
-                                    return node
-                                }
-
-                                return updatedGlyph
-                            })
-                        }
-                        onUpdate(t)
-                    }
-                    }></GlyphNodeEditor>
-                })
-            } 
-        </Fragment>)
-}
-
-type GlyphNodeEditorProps = {
-    value: GlyphNodeModel
-    onUpdate: (val: GlyphNodeModel) => void
-}
-
-export const GlyphNodeEditor = ({value, onUpdate}: GlyphNodeEditorProps) => {
-    return (<Fragment key={value.Id}>
-        <Grid item xs={6}></Grid>
-        <Grid item xs={6}>{GlyphType[value.Type]}</Grid>
-        <Grid item xs={6}></Grid>
-        <Grid item xs={6}><GlyphSelector value={value.Type} onChange={(glyph) => 
-            {
-                var t = {...value, Type: glyph }
-                onUpdate(t)
-            }} ></GlyphSelector></Grid>
-    </Fragment>)
+export const editorRow = {
+    height: "4em",
+    alignItems: "center",
+     display:"flex"
 }
 
 type Props = {
@@ -76,22 +30,22 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
     var centerGlyph = glyphs.CenterGlyph ?? { Type:  GlyphType.Blank}
 
     return (<>
-
-        <Grid container>
-            <Grid item xs={6}> 
+        <Grid container spacing={1} sx={{ alignItems: "center" }}>
+            <Grid item xs={4} sx={editorRow}> 
                 Center glyph 
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4} sx={editorRow}>
                 <GlyphSelector value={centerGlyph.Type} onChange={(g) => 
                                         {
                                             updateCenterVal(g)
                                         }} ></GlyphSelector>
             </Grid>
+            <Grid item xs={4}></Grid>
             {
                 glyphs.Rings && glyphs.Rings.map((r, ri) => {
                     return <GlyphRingEditor value={r} index={ri} 
                         onUpdate={(val) => { 
-                            const t = {
+                            onUpdate({
                                 ...glyphs,
                                 Rings: glyphs.Rings?.map(glyph => {
                                     if (glyph.Id !== val.Id) return glyph
@@ -100,13 +54,42 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
                                         ...val
                                     }
                                 })
+                            })
+                        }}
+                        onRemove={
+                            (id) => {
+                                onUpdate({
+                                    ...glyphs,
+                                    Rings: glyphs.Rings?.filter(glyph => glyph.Id !== id)
+                                })
                             }
-                            onUpdate(t)
-                        }} />
+                        }
+                         />
                 })
             }
+             <Grid xs={4}>
+            
+            </Grid>
+            <Grid xs={8}>
+                <Button 
+                    variant="contained"
+                    onClick={() => {
+                        const rings = glyphs.Rings ?? []
+                        const newId = Math.max(...rings.map(x => x.Id)) + 1
+                        onUpdate({
+                            ...glyphs,
+                            Rings: [
+                                ...rings,
+                                { 
+                                    Id : newId,
+                                    Nodes: []
+                                 }]
+                            })
+                        }}
+                >Add Ring</Button>
+            </Grid>
         </Grid>
-
+       
     </>)
 }
 

@@ -9,6 +9,7 @@ type Props = {
 export const GlyphSelector = ({value, onChange}: Props) => {
     return (
         <Select
+            sx={{width:"1"}}
             value={value}
             onChange={(e) => 
                 {

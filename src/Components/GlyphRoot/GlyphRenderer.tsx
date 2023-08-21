@@ -40,7 +40,7 @@ const GlyphRenderer = ({glyphs}: Props) => {
             border: 0,
             p: 2,
             minWidth: 300,
-            height: '80vh'
+            // height: '80vh'
           }}>
             <svg fill="gray" viewBox="0 0 1200 1200" style={{height:'100%'}}>
                 <rect width='100%' height='100%' fill="white"></rect>

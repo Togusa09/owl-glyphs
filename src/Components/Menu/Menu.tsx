@@ -15,7 +15,7 @@ export const Menu = ({onGlyphUpdated, currentGlyph}: Props) => {
         borderRadius: 2,
         p: 2,
         minWidth: 300,
-        height: '80vh'
+        // height: '80vh'
       }}>
         <SavedGlyphMenu onGlyphLoaded={(g) => onGlyphUpdated(g)}></SavedGlyphMenu>
         <GlyphEditor
