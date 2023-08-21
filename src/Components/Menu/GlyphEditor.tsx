@@ -75,7 +75,10 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
                     variant="contained"
                     onClick={() => {
                         const rings = glyphs.Rings ?? []
-                        const newId = Math.max(...rings.map(x => x.Id)) + 1
+                        const newId = rings.length > 0
+                            ? Math.max(...rings.map(x => x.Id)) + 1
+                            : 1
+                            
                         onUpdate({
                             ...glyphs,
                             Rings: [

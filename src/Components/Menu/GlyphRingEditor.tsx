@@ -49,7 +49,9 @@ export const GlyphRingEditor = ({value, index, onUpdate, onRemove}: GlyphRingEdi
         <Button 
             variant="contained"
             onClick={() => {
-                const newId = Math.max(...value.Nodes.map(x => x.Id)) + 1
+                const newId = value.Nodes.length > 0
+                    ? Math.max(...value.Nodes.map(x => x.Id)) + 1
+                    : 1
                 onUpdate({
                     ...value,
                     Nodes:  [
