@@ -23,7 +23,7 @@ export const GlyphRingEditor = ({value, index, onUpdate}: GlyphRingEditorProps) 
                         var t = {
                             ...value,
                             Nodes: value.Nodes.map(node => {
-                                if (node.Id != updatedGlyph.Id){
+                                if (node.Id !== updatedGlyph.Id){
                                     return node
                                 }
 
@@ -94,7 +94,7 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
                             const t = {
                                 ...glyphs,
                                 Rings: glyphs.Rings?.map(glyph => {
-                                    if (glyph.Id != val.Id) return glyph
+                                    if (glyph.Id !== val.Id) return glyph
 
                                     return {
                                         ...val

@@ -1,6 +1,5 @@
 import { MenuItem, Select } from "@mui/material"
 import { GlyphType } from "../../Models/GlyphType"
-import { useState } from "react"
 
 type Props = {
     value: GlyphType
