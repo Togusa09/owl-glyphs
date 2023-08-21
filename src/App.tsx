@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 // import './App.css';
-import GlyphRoot from './Components/GlyphRoot/GlyphRoot';
+import GlyphRenderer from './Components/GlyphRoot/GlyphRenderer';
 import { TestGlyph } from './Data/GlyphDefinitions';
 import Menu from './Components/Menu/Menu';
 import { Box, Container, Grid, ThemeProvider, createTheme } from '@mui/material';
@@ -37,31 +37,18 @@ function App() {
             paddingRight: '50px !important',
           }}
         >
-          <Grid container sx={{borderStyle:'none'}}>
-            <Grid item xs={1} />
-            <Grid item xs={2} sx={{border:'2px solid red'}}>
-              <Menu loadGlyph={
-                (g) => {
-                  setGlyph(g)}
-                } 
-                currentGlyph={glyph}></Menu>
+            <Grid container spacing={2}>
+              <Grid container sm={6}>
+                <Menu 
+                  onGlyphUpdated={updatedGlyph => setGlyph(updatedGlyph)}
+                  currentGlyph={glyph}></Menu>
+              </Grid>
+              <Grid container sm={6}>
+                <GlyphRenderer glyphs={glyph}></GlyphRenderer>
+              </Grid>
             </Grid>
-            <Grid item xs={8} sx={{border:0}}>
-              <GlyphRoot glyphs={ glyph }></GlyphRoot>
-            </Grid>
-            <Grid item xs={1} />
-          </Grid>
         </Container>
       </Box>
-      {/* <Box>
-        <Footer />
-      </Box> */}
-
-
-
-      {/* <Box sx={{ flexGrow: 1 }}>
-        
-      </Box> */}
     </ThemeProvider>
   );
 }
