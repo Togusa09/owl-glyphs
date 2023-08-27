@@ -7,7 +7,7 @@ import { GlyphRingEditor } from "./GlyphRingEditor"
 export const editorRow = {
     height: "4em",
     alignItems: "center",
-     display:"flex"
+    display:"flex"
 }
 
 type Props = {
@@ -40,7 +40,7 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
                                             updateCenterVal(g)
                                         }} ></GlyphSelector>
             </Grid>
-            <Grid item xs={4}></Grid>
+            <Grid item xs={4} sx={editorRow}/> 
             {
                 glyphs.Rings && glyphs.Rings.map((r, ri) => {
                     return <GlyphRingEditor value={r} index={ri} 
@@ -67,25 +67,25 @@ export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
                          />
                 })
             }
-             <Grid xs={4}>
-            
-            </Grid>
-            <Grid xs={8}>
+            <Grid item xs={8} sx={editorRow} />
+            <Grid item xs={4} sx={editorRow}>
                 <Button 
                     variant="contained"
+                    sx={{width:1}} 
                     onClick={() => {
                         const rings = glyphs.Rings ?? []
                         const newId = rings.length > 0
                             ? Math.max(...rings.map(x => x.Id)) + 1
                             : 1
-                            
+
                         onUpdate({
                             ...glyphs,
                             Rings: [
                                 ...rings,
                                 { 
                                     Id : newId,
-                                    Nodes: []
+                                    Nodes: [],
+                                    Offset: 0
                                  }]
                             })
                         }}

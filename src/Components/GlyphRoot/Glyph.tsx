@@ -18,7 +18,7 @@ type ChildProps = {
 
 export const LightGlyph = ({x, y, scale}: ChildProps) => {
     return (
-    <g filter="url(#softGlowLight)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
+    <g filter="url(#softGlowLight)" stroke="black" strokeWidth={3} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="0" y1="-50" x2="0" y2="200" />
@@ -51,7 +51,7 @@ export const FireGlyph = ({x, y, scale}: ChildProps) => {
                 </feMerge>
             </filter> */}
         </defs>
-        <g filter="url(#softGlowFire)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
+        <g filter="url(#softGlowFire)" stroke="black" strokeWidth={3} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
             <circle cx="0" cy="0" r="250" className="glyphBackground"/>
             <circle cx="0" cy="0" r="200"/>
             <circle cx="0" cy="100" r="100" />
@@ -75,7 +75,7 @@ export const FireGlyph = ({x, y, scale}: ChildProps) => {
 
 export const IceGlyph = ({x, y, scale}: ChildProps) => {
     return (
-    <g filter="url(#softGlowIce)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
+    <g filter="url(#softGlowIce)" stroke="black" strokeWidth={3} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         <line x1="-180" y1="80" x2="180" y2="80"/>
@@ -94,7 +94,7 @@ export const IceGlyph = ({x, y, scale}: ChildProps) => {
 
 export const PlantGlyph = ({x, y, scale}: ChildProps) => {
     return (
-    <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={10} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
+    <g filter="url(#softGlowPlant)" stroke="black" strokeWidth={3} transform={"translate("+ x +"," + y + ") scale(" + scale +")"}>
         <circle cx="0" cy="0" r="250" className="glyphBackground"/>
         <circle cx="0" cy="0" r="200"/>
         {/* <!-- Flower --> */}

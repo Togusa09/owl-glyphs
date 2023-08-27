@@ -37,12 +37,12 @@ export const SleepMist : GlyphCollectionModel = {
   Rings: [
       { 
           Id: 1,
-          //Offset: -45,
           Nodes:
           [
             { Id: 1, Type: GlyphType.Ice},
             { Id: 2, Type: GlyphType.Fire}
-          ] 
+          ],
+          Offset: 0
       }
   ]
 }
@@ -52,6 +52,7 @@ export const TestGlyph : GlyphCollectionModel = {
     Rings : [
       { 
         Id: 1,
+        Offset: 0,
         Nodes : [
           { Id: 2, Type : GlyphType.Fire },
           { Id: 3, Type : GlyphType.Ice },
@@ -61,6 +62,7 @@ export const TestGlyph : GlyphCollectionModel = {
       },
       { 
         Id: 2,
+        Offset: 0,
         Nodes : [
           { Id: 6, Type : GlyphType.Fire },
           { Id: 7, Type : GlyphType.Plant }

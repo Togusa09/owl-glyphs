@@ -23,6 +23,12 @@
     fill:  none;
     stroke: #fff;
     stroke-width: 10px;
+
+    /* vector-effect: "non-scaling-stroke" */
+  }
+
+  .glyphs * {
+    vector-effect: non-scaling-stroke
   }
   
   /* .glyph > svg circle {} */

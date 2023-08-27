@@ -37,12 +37,14 @@ const GlyphRenderer = ({glyphs}: Props) => {
     return (
         <Box sx={{
             bgcolor: 'background.paper',
-            border: 0,
-            p: 2,
+            p: 6,
             minWidth: 300,
+            width: 1,
+            boxShadow: 1,
+            borderRadius: 2,
             // height: '80vh'
           }}>
-            <svg fill="gray" viewBox="0 0 1200 1200" style={{height:'100%'}}>
+            <svg fill="gray" viewBox="0 0 1200 1200" style={{ display: "inline-block"}} className="glyphs">
                 <rect width='100%' height='100%' fill="white"></rect>
                 {
                     glyphs.CenterGlyph && <Glyph 

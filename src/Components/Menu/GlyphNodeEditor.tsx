@@ -19,6 +19,6 @@ export const GlyphNodeEditor = ({value, onUpdate, onRemove}: GlyphNodeEditorProp
         } />
     </Grid>
     <Grid item xs={4} sx={{...editorRow}}>
-        <Button variant="contained" onClick={() => onRemove(value.Id)}>Remove</Button>
+        <Button variant="contained" sx={{width:1}}  onClick={() => onRemove(value.Id)}>Remove</Button>
     </Grid>
 </Fragment>)

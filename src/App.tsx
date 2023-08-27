@@ -38,12 +38,12 @@ function App() {
           }}
         >
             <Grid container spacing={2}>
-              <Grid container sm={6}>
+              <Grid container sm={4}>
                 <Menu 
                   onGlyphUpdated={updatedGlyph => setGlyph(updatedGlyph)}
                   currentGlyph={glyph}></Menu>
               </Grid>
-              <Grid container sm={6}>
+              <Grid container sm={8}>
                 <GlyphRenderer glyphs={glyph}></GlyphRenderer>
               </Grid>
             </Grid>
