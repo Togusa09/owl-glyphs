@@ -11,7 +11,16 @@ export const editorRow = {
 };
 
 export const GlyphEditor = () => {
-  const { glyphArrangement, dispatchGlyphs } = useGlyphContext();
+  const {
+    glyphArrangement,
+    addRing,
+    deleteRing,
+    updateRing,
+    addNode,
+    deleteNode,
+    updateNode,
+    updateCenterNode,
+  } = useGlyphContext();
   var centerGlyph = glyphArrangement.CenterGlyph ?? { Type: GlyphType.Blank };
 
   return (
@@ -23,9 +32,7 @@ export const GlyphEditor = () => {
         <Grid item xs={4} sx={editorRow}>
           <GlyphSelector
             value={centerGlyph.Type}
-            onChange={(g) => {
-              dispatchGlyphs({ type: "UpdateCenter", glyphType: g });
-            }}
+            onChange={updateCenterNode}
           ></GlyphSelector>
         </Grid>
         <Grid item xs={4} sx={editorRow} />
@@ -35,39 +42,21 @@ export const GlyphEditor = () => {
               <GlyphRingEditor
                 value={r}
                 index={ri}
-                onUpdate={() => dispatchGlyphs({type: "UpdateRing", ringId: r.Id})}
-                onAddNode={(glyphType) => dispatchGlyphs({type: "AddNode", ringId: r.Id, glyphType})}
-                onRemoveNode={(glyphId) =>
-                  dispatchGlyphs({ type: "DeleteNode", ringId: r.Id, glyphId })
+                onUpdate={(updatedRing) =>
+                  updateRing(r.Id, updatedRing)
                 }
+                onAddNode={(glyphType) => addNode(r.Id, glyphType)}
+                onRemoveNode={(glyphId) => deleteNode(r.Id, glyphId)}
                 onUpdateNode={(glyphId, glyphType) =>
-                  dispatchGlyphs({
-                    type: "UpdateNode",
-                    ringId: r.Id,
-                    glyphId,
-                    glyphType,
-                  })
+                  updateNode(r.Id, glyphId, glyphType)
                 }
-                onRemove={() =>
-                  dispatchGlyphs({
-                    type: "DeleteRing",
-                    ringId: r.Id,
-                  })
-                }
+                onRemove={() => deleteRing(r.Id)}
               />
             );
           })}
         <Grid item xs={8} sx={editorRow} />
         <Grid item xs={4} sx={editorRow}>
-          <Button
-            variant="contained"
-            sx={{ width: 1 }}
-            onClick={() =>
-              dispatchGlyphs({
-                type: "AddRing",
-              })
-            }
-          >
+          <Button variant="contained" sx={{ width: 1 }} onClick={addRing}>
             Add Ring
           </Button>
         </Grid>

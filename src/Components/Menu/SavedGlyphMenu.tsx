@@ -8,30 +8,14 @@ import {
 import Button from "@mui/material/Button";
 
 export const SavedGlyphMenu = () => {
-  const { dispatchGlyphs } = useGlyphContext();
+  const { loadGlyphs } = useGlyphContext();
 
   return (
     <div className="save-glyph-menu">
-      <Button
-        onClick={() => dispatchGlyphs({ type: "Load", model: Invisibility })}
-      >
-        Invisibility
-      </Button>
-      <Button
-        onClick={() => dispatchGlyphs({ type: "Load", model: SleepMist })}
-      >
-        Sleep Mist
-      </Button>
-      <Button
-        onClick={() => dispatchGlyphs({ type: "Load", model: SafetyHover })}
-      >
-        Safety Hover
-      </Button>
-      <Button
-        onClick={() => dispatchGlyphs({ type: "Load", model: TestGlyph })}
-      >
-        Test Glyph
-      </Button>
+      <Button onClick={() => loadGlyphs(Invisibility)}>Invisibility</Button>
+      <Button onClick={() => loadGlyphs(SleepMist)}>Sleep Mist</Button>
+      <Button onClick={() => loadGlyphs(SafetyHover)}>Safety Hover</Button>
+      <Button onClick={() => loadGlyphs(TestGlyph)}>Test Glyph</Button>
     </div>
   );
 };

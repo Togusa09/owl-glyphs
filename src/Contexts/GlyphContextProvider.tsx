@@ -1,5 +1,4 @@
 import {
-  Dispatch,
   ReactNode,
   createContext,
   useContext,
@@ -7,12 +6,22 @@ import {
   useReducer,
 } from "react";
 import { TestGlyph } from "../Data/GlyphDefinitions";
-import { GlyphArrangementModel } from "../Models/GlyphCollection";
+import {
+  GlyphArrangementModel,
+  GlyphRingModel,
+} from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
 type GlyphContextType = {
   glyphArrangement: GlyphArrangementModel;
-  dispatchGlyphs: Dispatch<GlpyhReducerActionModel>;
+  loadGlyphs: (model: GlyphArrangementModel) => void;
+  addRing: () => void;
+  deleteRing: (ringId: number) => void;
+  updateRing: (ringId: number, ring: GlyphRingModel) => void;
+  addNode: (ringId: number, glyphType: GlyphType) => void;
+  deleteNode: (ringId: number, glyphId: number) => void;
+  updateNode: (ringId: number, glyphId: number, glyphType: GlyphType) => void;
+  updateCenterNode: (glyphType: GlyphType) => void;
 };
 
 export const CustomOrderContext = createContext<string | null>(null);
@@ -31,13 +40,50 @@ export default function GlyphContextProvider({
     TestGlyph
   );
 
-  const value = useMemo(
-    () => ({
+  const value = useMemo(() => {
+    const loadGlyphs = (glyphs: GlyphArrangementModel) => {
+      dispatchGlyphs({ type: "Load", model: glyphs });
+    };
+
+    const addRing = () => {
+      dispatchGlyphs({ type: "AddRing" });
+    };
+
+    const deleteRing = (ringId: number) => {
+      dispatchGlyphs({ type: "DeleteRing", ringId });
+    };
+    const updateRing = (ringId: number, ring: GlyphRingModel) => {
+      dispatchGlyphs({ type: "UpdateRing", ringId, ring });
+    };
+    const addNode = (ringId: number, glyphType: GlyphType) => {
+      dispatchGlyphs({ type: "AddNode", ringId, glyphType });
+    };
+    const updateNode = (
+      ringId: number,
+      glyphId: number,
+      glyphType: GlyphType
+    ) => {
+      dispatchGlyphs({ type: "UpdateNode", ringId, glyphId, glyphType });
+    };
+    const deleteNode = (ringId: number, glyphId: number) => {
+      dispatchGlyphs({ type: "DeleteNode", ringId, glyphId });
+    };
+    const updateCenterNode = (glyphType: GlyphType) => {
+      dispatchGlyphs({ type: "UpdateCenter", glyphType });
+    };
+
+    return {
       glyphArrangement,
-      dispatchGlyphs,
-    }),
-    [glyphArrangement, dispatchGlyphs]
-  );
+      loadGlyphs,
+      addRing,
+      deleteRing,
+      updateRing,
+      addNode,
+      updateNode,
+      deleteNode,
+      updateCenterNode,
+    };
+  }, [glyphArrangement]);
 
   return (
     <GlyphContext.Provider value={value}>{children}</GlyphContext.Provider>
@@ -54,7 +100,7 @@ export function useGlyphContext() {
   return context;
 }
 
-type GlpyhReducerActionModel =
+type GlyphReducerActionModel =
   | {
       type: "DeleteRing";
       ringId: number;
@@ -65,6 +111,7 @@ type GlpyhReducerActionModel =
   | {
       type: "UpdateRing";
       ringId: number;
+      ring: GlyphRingModel;
     }
   | {
       type: "AddNode";
@@ -93,7 +140,7 @@ type GlpyhReducerActionModel =
 
 function glyphsReducer(
   glyphs: GlyphArrangementModel,
-  action: GlpyhReducerActionModel
+  action: GlyphReducerActionModel
 ): GlyphArrangementModel {
   console.log(action);
 
@@ -125,7 +172,7 @@ function glyphsReducer(
       return action.model;
     }
     case "AddNode": {
-      const nodes = glyphs.Rings![action.ringId].Nodes;
+      const nodes = glyphs.Rings!.find(x => x.Id === action.ringId)!.Nodes;
       const newId: number =
         nodes.length > 0 ? Math.max(...nodes.map((x) => x.Id)) + 1 : 1;
       return {
@@ -188,7 +235,7 @@ function glyphsReducer(
             ...ring,
           };
         }),
-      }
+      };
     }
     default:
       return glyphs;
