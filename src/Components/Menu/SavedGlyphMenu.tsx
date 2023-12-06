@@ -1,9 +1,9 @@
 import { Invisibility, SleepMist, TestGlyph, SafetyHover } from "../../Data/GlyphDefinitions"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
+import { GlyphArrangementModel } from "../../Models/GlyphCollection"
 import Button from '@mui/material/Button';
 
 type Props = {
-    onGlyphLoaded: (gc: GlyphCollectionModel) => void
+    onGlyphLoaded: (gc: GlyphArrangementModel) => void
 }
 
 export const SavedGlyphMenu = ({onGlyphLoaded}: Props) => {

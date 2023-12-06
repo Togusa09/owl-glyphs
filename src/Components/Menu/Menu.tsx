@@ -1,14 +1,11 @@
 import { Box } from "@mui/material"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
 import SavedGlyphMenu from "./SavedGlyphMenu"
 import GlyphEditor from "./GlyphEditor"
+import { useGlyphContext } from "../../Contexts/GlyphContextProvider"
 
-type Props = {
-    onGlyphUpdated: (gc: GlyphCollectionModel) => void
-    currentGlyph: GlyphCollectionModel
-}
+export const Menu = () => {
+    const { glyphArrangement, setGlyphArrangement } = useGlyphContext();
 
-export const Menu = ({onGlyphUpdated, currentGlyph}: Props) => {
     return (<Box  sx={{
         bgcolor: 'background.paper',
         boxShadow: 1,
@@ -16,14 +13,13 @@ export const Menu = ({onGlyphUpdated, currentGlyph}: Props) => {
         p: 2,
         minWidth: 300,
         maxWidth: 400
-        // height: '80vh'
       }}>
-        <SavedGlyphMenu onGlyphLoaded={(g) => onGlyphUpdated(g)}></SavedGlyphMenu>
+        <SavedGlyphMenu onGlyphLoaded={(g) => setGlyphArrangement(g)}></SavedGlyphMenu>
         <GlyphEditor
-            glyphs={currentGlyph} 
+            glyphs={glyphArrangement} 
             onUpdate={g => 
             { 
-                onGlyphUpdated(g)}
+                setGlyphArrangement(g)}
             } />
     </Box>)
 }

@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
+import { GlyphArrangementModel } from "../../Models/GlyphCollection"
 import { GlyphType } from "../../Models/GlyphType"
 import GlyphSelector from "./GlyphSelector"
 import { GlyphRingEditor } from "./GlyphRingEditor"
@@ -11,8 +11,8 @@ export const editorRow = {
 }
 
 type Props = {
-    glyphs: GlyphCollectionModel
-    onUpdate: (val: GlyphCollectionModel) => void
+    glyphs: GlyphArrangementModel
+    onUpdate: (val: GlyphArrangementModel) => void
 }
 
 export const GlyphEditor = ({glyphs, onUpdate}: Props) => {

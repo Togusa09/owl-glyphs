@@ -1,6 +1,6 @@
 import { GlyphType } from "./GlyphType"
 
-export interface GlyphCollectionModel{
+export interface GlyphArrangementModel{
     Rings?: GlyphRingModel[]
     CenterGlyph?: GlyphNodeModel
 }
