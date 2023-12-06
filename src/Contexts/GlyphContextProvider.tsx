@@ -44,11 +44,9 @@ export default function GlyphContextProvider({
     const loadGlyphs = (glyphs: GlyphArrangementModel) => {
       dispatchGlyphs({ type: "Load", model: glyphs });
     };
-
     const addRing = () => {
       dispatchGlyphs({ type: "AddRing" });
     };
-
     const deleteRing = (ringId: number) => {
       dispatchGlyphs({ type: "DeleteRing", ringId });
     };
@@ -172,7 +170,7 @@ function glyphsReducer(
       return action.model;
     }
     case "AddNode": {
-      const nodes = glyphs.Rings!.find(x => x.Id === action.ringId)!.Nodes;
+      const nodes = glyphs.Rings!.find((x) => x.Id === action.ringId)!.Nodes;
       const newId: number =
         nodes.length > 0 ? Math.max(...nodes.map((x) => x.Id)) + 1 : 1;
       return {

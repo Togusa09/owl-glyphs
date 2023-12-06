@@ -2,6 +2,7 @@ import { GlyphArrangementModel } from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
 export const Invisibility: GlyphArrangementModel = {
+  Name: 'Invisibility',
   CenterGlyph: { Id: 1, Type: GlyphType.Light },
   Rings: [
     {
@@ -18,6 +19,7 @@ export const Invisibility: GlyphArrangementModel = {
 };
 
 export const SafetyHover: GlyphArrangementModel = {
+  Name: 'Safety Hover',
   CenterGlyph: { Id: 1, Type: GlyphType.Light },
   Rings: [
     {
@@ -32,6 +34,7 @@ export const SafetyHover: GlyphArrangementModel = {
 };
 
 export const SleepMist: GlyphArrangementModel = {
+  Name: 'Sleep Mist',
   Rings: [
     {
       Id: 1,
@@ -45,6 +48,7 @@ export const SleepMist: GlyphArrangementModel = {
 };
 
 export const TestGlyph: GlyphArrangementModel = {
+  Name: 'Test Glyph',
   CenterGlyph: { Id: 1, Type: GlyphType.Fire },
   Rings: [
     {

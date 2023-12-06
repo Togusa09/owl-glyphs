@@ -105,7 +105,7 @@ export const PlantGlyph = ({x, y, scale}: ChildProps) => {
         <line x1="0" y1="40" x2="-40" y2="-5"/>
         <line x1="0" y1="40" x2=" 40" y2="-5"/>
         {/* <!-- Root --> */}
-        <circle cx="0" cy="90" r="7" style={{strokeWidth: '5px;'}} />
+        <circle cx="0" cy="90" r="7" style={{strokeWidth: '5px'}} />
         <circle cx="0" cy="90" r="50" />
       </g>
     )
