@@ -12,7 +12,6 @@ type Props = {
 }
 
 export const GlyphRing = ({glyphNodes, size, index, x, y, offset, totalRings}: Props) => {
-    console.log("Test")
     index = index ?? 0
     
     const glyphCount = glyphNodes.length

@@ -1,18 +1,39 @@
-import { Invisibility, SleepMist, TestGlyph, SafetyHover } from "../../Data/GlyphDefinitions"
-import { GlyphArrangementModel } from "../../Models/GlyphCollection"
-import Button from '@mui/material/Button';
+import { useGlyphContext } from "../../Contexts/GlyphContextProvider";
+import {
+  Invisibility,
+  SleepMist,
+  TestGlyph,
+  SafetyHover,
+} from "../../Data/GlyphDefinitions";
+import Button from "@mui/material/Button";
 
-type Props = {
-    onGlyphLoaded: (gc: GlyphArrangementModel) => void
-}
+export const SavedGlyphMenu = () => {
+  const { dispatchGlyphs } = useGlyphContext();
 
-export const SavedGlyphMenu = ({onGlyphLoaded}: Props) => {
-    return (<div className="save-glyph-menu">
-        <Button onClick={() => onGlyphLoaded(Invisibility)} >Invisibility</Button>
-        <Button onClick={() => onGlyphLoaded(SleepMist)}>Sleep Mist</Button>
-        <Button onClick={() => onGlyphLoaded(SafetyHover)}>Safety Hover</Button>
-        <Button onClick={() => onGlyphLoaded(TestGlyph)}>Test Glyph</Button>
-    </div>)
-}
+  return (
+    <div className="save-glyph-menu">
+      <Button
+        onClick={() => dispatchGlyphs({ type: "Load", model: Invisibility })}
+      >
+        Invisibility
+      </Button>
+      <Button
+        onClick={() => dispatchGlyphs({ type: "Load", model: SleepMist })}
+      >
+        Sleep Mist
+      </Button>
+      <Button
+        onClick={() => dispatchGlyphs({ type: "Load", model: SafetyHover })}
+      >
+        Safety Hover
+      </Button>
+      <Button
+        onClick={() => dispatchGlyphs({ type: "Load", model: TestGlyph })}
+      >
+        Test Glyph
+      </Button>
+    </div>
+  );
+};
 
-export default SavedGlyphMenu
+export default SavedGlyphMenu;
