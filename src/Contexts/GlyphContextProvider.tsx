@@ -146,8 +146,6 @@ function glyphsReducer(
   glyphs: GlyphArrangementModel,
   action: GlyphReducerActionModel
 ): GlyphArrangementModel {
-  console.log(action);
-
   switch (action.type) {
     case "AddRing": {
       const rings = glyphs.Rings ?? [];
