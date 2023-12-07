@@ -49,6 +49,7 @@ export const GlyphRingEditor = ({
       return (
         <GlyphNodeEditor
           value={n}
+          key={n.Id}
           onUpdate={(updatedGlyph) => {
             onUpdateNode(n.Id, updatedGlyph);
           }}

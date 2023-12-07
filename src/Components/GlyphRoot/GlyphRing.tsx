@@ -23,7 +23,7 @@ export const GlyphRing = ({glyphNodes, size, index, x, y, offset, totalRings}: P
 
     return (
         <>
-            <circle cx={x} cy={y} r={size} stroke="black" stroke-width="2" fill="none"/>
+            <circle cx={x} cy={y} r={size} stroke="black" strokeWidth="2" fill="none"/>
             {glyphNodes.map((glyph, i) => {
                 var glyphX = size * Math.cos((totalAngle / glyphCount * i) + offsetAngle)
                 var glyphY = size * Math.sin((totalAngle / glyphCount * i) + offsetAngle)

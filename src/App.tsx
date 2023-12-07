@@ -41,10 +41,10 @@ function App() {
             }}
           >
             <Grid container spacing={2}>
-              <Grid container sm={4}>
+              <Grid container item sm={4}>
                 <Menu />
               </Grid>
-              <Grid container sm={8}>
+              <Grid container item sm={8}>
                 <GlyphRenderer />
               </Grid>
             </Grid>

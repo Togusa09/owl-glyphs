@@ -22,6 +22,7 @@ type GlyphContextType = {
   deleteNode: (ringId: number, glyphId: number) => void;
   updateNode: (ringId: number, glyphId: number, glyphType: GlyphType) => void;
   updateCenterNode: (glyphType: GlyphType) => void;
+  updateName: (name: string) => void;
 };
 
 export const CustomOrderContext = createContext<string | null>(null);
@@ -69,6 +70,9 @@ export default function GlyphContextProvider({
     const updateCenterNode = (glyphType: GlyphType) => {
       dispatchGlyphs({ type: "UpdateCenter", glyphType });
     };
+    const updateName = (name: string) => {
+      dispatchGlyphs({ type: "UpdateName", name });
+    };
 
     return {
       glyphArrangement,
@@ -80,6 +84,7 @@ export default function GlyphContextProvider({
       updateNode,
       deleteNode,
       updateCenterNode,
+      updateName,
     };
   }, [glyphArrangement]);
 
@@ -99,6 +104,7 @@ export function useGlyphContext() {
 }
 
 type GlyphReducerActionModel =
+  | { type: "UpdateName"; name: string }
   | {
       type: "DeleteRing";
       ringId: number;
@@ -233,6 +239,12 @@ function glyphsReducer(
             ...ring,
           };
         }),
+      };
+    }
+    case "UpdateName": {
+      return {
+        ...glyphs,
+        Name: action.name,
       };
     }
     default:

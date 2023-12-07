@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import { GlyphType } from "../../Models/GlyphType";
 import GlyphSelector from "./GlyphSelector";
 import { GlyphRingEditor } from "./GlyphRingEditor";
@@ -20,12 +20,22 @@ export const GlyphEditor = () => {
     deleteNode,
     updateNode,
     updateCenterNode,
+    updateName,
   } = useGlyphContext();
   var centerGlyph = glyphArrangement.CenterGlyph ?? { Type: GlyphType.Blank };
 
   return (
     <>
       <Grid container spacing={1} sx={{ alignItems: "center" }}>
+        <Grid item xs={4} sx={editorRow}>
+          Name
+        </Grid>
+        <Grid item xs={8} sx={editorRow}>
+          <TextField
+            value={glyphArrangement.Name}
+            onChange={(e) => updateName(e.target.value)}
+          />
+        </Grid>
         <Grid item xs={4} sx={editorRow}>
           Center glyph
         </Grid>
@@ -41,10 +51,9 @@ export const GlyphEditor = () => {
             return (
               <GlyphRingEditor
                 value={r}
+                key={r.Id}
                 index={ri}
-                onUpdate={(updatedRing) =>
-                  updateRing(r.Id, updatedRing)
-                }
+                onUpdate={(updatedRing) => updateRing(r.Id, updatedRing)}
                 onAddNode={(glyphType) => addNode(r.Id, glyphType)}
                 onRemoveNode={(glyphId) => deleteNode(r.Id, glyphId)}
                 onUpdateNode={(glyphId, glyphType) =>
