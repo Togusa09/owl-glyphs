@@ -43,7 +43,6 @@ const GlyphRenderer = () => {
       }}
     >
       <svg
-        fill="gray"
         viewBox="0 0 1200 1200"
         style={{ display: "inline-block" }}
         className="glyphs"

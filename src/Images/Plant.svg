@@ -1,0 +1,28 @@
+<svg viewBox="-275 -275 550 550" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" class="glyph plant">
+	<!-- <defs>
+		<filter id="softGlowPlant" height="300%" width="300%" x="-75%" y="-75%">
+			<feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+			<feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
+			<feFlood flood-color="rgb(139,255,139)" result="glowColor" />
+			<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+			<feMerge>
+				<feMergeNode in="softGlow_colored" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs> -->
+	<g filter="url(#softGlowPlant)" stroke="black">
+		<circle cx="0" cy="0" r="250" fill='white' />
+		<circle cx="0" cy="0" r="200" />
+		<!-- Flower -->
+		<polyline points="0 -80 -50 -150 50 -150 0 -80" />
+		<line x1="-29" y1="-120" x2="29" y2="-120" />
+		<!-- Stem -->
+		<line x1="0" y1="40" x2="0" y2="-80" />
+		<line x1="0" y1="40" x2="-40" y2="-5" />
+		<line x1="0" y1="40" x2=" 40" y2="-5" />
+		<!-- Root -->
+		<circle cx="0" cy="90" r="50" />
+		<circle cx="0" cy="90" r="7" style="stroke-width: 5px;" />
+	</g>
+</svg>

@@ -1,0 +1,32 @@
+<svg viewBox="-275 -275 550 550" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" class="glyph fire">
+	<!-- <defs>
+		<filter id="softGlowFire" height="300%" width="300%" x="-75%" y="-75%">
+			<feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+			<feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
+			<feFlood flood-color="rgb(255,92,92)" result="glowColor" />
+			<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+			<feMerge>
+				<feMergeNode in="softGlow_colored" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs> -->
+	<g filter="url(#softGlowFire)" fill='none'>
+		<circle cx="0" cy="0" r="250" fill='white' />
+		<circle cx="0" cy="0" r="200" />
+		<circle cx="0" cy="100" r="100" />
+		<!-- big circle -->
+		<circle cx="0" cy="100" r="1" />
+		<!-- dot -->
+		<circle cx="0" cy="-60" r="60" />
+		<!-- little circle -->
+		<path d="M  -60 -60 
+                 C  -60  -42 -70 -122   0 -200
+                 C   70 -122  60  -42  60  -60 " />
+		<!-- little flame -->
+		<path d="M -100 100 
+                 C -100  70 -100 -20   0 -120 
+                 C  100 -20  100  70 100  100" />
+		<!-- big flame -->
+	</g>
+</svg>
