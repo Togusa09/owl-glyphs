@@ -1,99 +1,77 @@
-import { Button, Grid } from "@mui/material"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
-import { GlyphType } from "../../Models/GlyphType"
-import GlyphSelector from "./GlyphSelector"
-import { GlyphRingEditor } from "./GlyphRingEditor"
+import { Button, Grid, TextField } from "@mui/material";
+import { GlyphType } from "../../Models/GlyphType";
+import GlyphSelector from "./GlyphSelector";
+import { GlyphRingEditor } from "./GlyphRingEditor";
+import { useGlyphContext } from "../../Contexts/GlyphContextProvider";
 
 export const editorRow = {
-    height: "4em",
-    alignItems: "center",
-    display:"flex"
-}
+  height: "4em",
+  alignItems: "center",
+  display: "flex",
+};
 
-type Props = {
-    glyphs: GlyphCollectionModel
-    onUpdate: (val: GlyphCollectionModel) => void
-}
+export const GlyphEditor = () => {
+  const {
+    glyphArrangement,
+    addRing,
+    deleteRing,
+    updateRing,
+    addNode,
+    deleteNode,
+    updateNode,
+    updateCenterNode,
+    updateName,
+  } = useGlyphContext();
+  var centerGlyph = glyphArrangement.CenterGlyph ?? { Type: GlyphType.Blank };
 
-export const GlyphEditor = ({glyphs, onUpdate}: Props) => {
-    const updateCenterVal = (val: GlyphType) => {
-        const updatedModel = {
-            ...glyphs,
-            CenterGlyph: {
-                ...(glyphs.CenterGlyph!),
-                Type: val
-            }
-        }
-        onUpdate(updatedModel)
-    }
-
-    var centerGlyph = glyphs.CenterGlyph ?? { Type:  GlyphType.Blank}
-
-    return (<>
-        <Grid container spacing={1} sx={{ alignItems: "center" }}>
-            <Grid item xs={4} sx={editorRow}> 
-                Center glyph 
-            </Grid>
-            <Grid item xs={4} sx={editorRow}>
-                <GlyphSelector value={centerGlyph.Type} onChange={(g) => 
-                                        {
-                                            updateCenterVal(g)
-                                        }} ></GlyphSelector>
-            </Grid>
-            <Grid item xs={4} sx={editorRow}/> 
-            {
-                glyphs.Rings && glyphs.Rings.map((r, ri) => {
-                    return <GlyphRingEditor value={r} index={ri} 
-                        onUpdate={(val) => { 
-                            onUpdate({
-                                ...glyphs,
-                                Rings: glyphs.Rings?.map(glyph => {
-                                    if (glyph.Id !== val.Id) return glyph
-
-                                    return {
-                                        ...val
-                                    }
-                                })
-                            })
-                        }}
-                        onRemove={
-                            (id) => {
-                                onUpdate({
-                                    ...glyphs,
-                                    Rings: glyphs.Rings?.filter(glyph => glyph.Id !== id)
-                                })
-                            }
-                        }
-                         />
-                })
-            }
-            <Grid item xs={8} sx={editorRow} />
-            <Grid item xs={4} sx={editorRow}>
-                <Button 
-                    variant="contained"
-                    sx={{width:1}} 
-                    onClick={() => {
-                        const rings = glyphs.Rings ?? []
-                        const newId = rings.length > 0
-                            ? Math.max(...rings.map(x => x.Id)) + 1
-                            : 1
-
-                        onUpdate({
-                            ...glyphs,
-                            Rings: [
-                                ...rings,
-                                { 
-                                    Id : newId,
-                                    Nodes: [],
-                                    Offset: 0
-                                 }]
-                            })
-                        }}
-                >Add Ring</Button>
-            </Grid>
+  return (
+    <>
+      <Grid container spacing={1} sx={{ alignItems: "center" }}>
+        <Grid item xs={4} sx={editorRow}>
+          Name
         </Grid>
-       
-    </>)
-}
+        <Grid item xs={8} sx={editorRow}>
+          <TextField
+            value={glyphArrangement.Name}
+            onChange={(e) => updateName(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={4} sx={editorRow}>
+          Center glyph
+        </Grid>
+        <Grid item xs={4} sx={editorRow}>
+          <GlyphSelector
+            value={centerGlyph.Type}
+            onChange={updateCenterNode}
+          ></GlyphSelector>
+        </Grid>
+        <Grid item xs={4} sx={editorRow} />
+        {glyphArrangement.Rings &&
+          glyphArrangement.Rings.map((r, ri) => {
+            return (
+              <GlyphRingEditor
+                value={r}
+                key={r.Id}
+                index={ri}
+                onUpdate={(updatedRing) => updateRing(r.Id, updatedRing)}
+                onAddNode={(glyphType) => addNode(r.Id, glyphType)}
+                onRemoveNode={(glyphId) => deleteNode(r.Id, glyphId)}
+                onUpdateNode={(glyphId, glyphType) =>
+                  updateNode(r.Id, glyphId, glyphType)
+                }
+                onRemove={() => deleteRing(r.Id)}
+              />
+            );
+          })}
+        <Grid item xs={8} sx={editorRow} />
+        <Grid item xs={4} sx={editorRow}>
+          <Button variant="contained" sx={{ width: 1 }} onClick={addRing}>
+            Add Ring
+          </Button>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
 
-export default GlyphEditor
+export default GlyphEditor;

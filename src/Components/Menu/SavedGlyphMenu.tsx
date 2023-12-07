@@ -1,18 +1,62 @@
-import { Invisibility, SleepMist, TestGlyph, SafetyHover } from "../../Data/GlyphDefinitions"
-import { GlyphCollectionModel } from "../../Models/GlyphCollection"
-import Button from '@mui/material/Button';
+import { useGlyphContext } from "../../Contexts/GlyphContextProvider";
+import {
+  Invisibility,
+  SleepMist,
+  TestGlyph,
+  SafetyHover,
+} from "../../Data/GlyphDefinitions";
+import Button from "@mui/material/Button";
+import { GlyphArrangementModel } from "../../Models/GlyphCollection";
+import useLocalStorage from "../../Hooks/useLocalStorage";
+import { useState } from "react";
+import LoadingGlyphDialog from "./LoadingGlyphDialog";
 
-type Props = {
-    onGlyphLoaded: (gc: GlyphCollectionModel) => void
-}
+export const SavedGlyphMenu = () => {
+  const { glyphArrangement, loadGlyphs } = useGlyphContext();
 
-export const SavedGlyphMenu = ({onGlyphLoaded}: Props) => {
-    return (<div className="save-glyph-menu">
-        <Button onClick={() => onGlyphLoaded(Invisibility)} >Invisibility</Button>
-        <Button onClick={() => onGlyphLoaded(SleepMist)}>Sleep Mist</Button>
-        <Button onClick={() => onGlyphLoaded(SafetyHover)}>Safety Hover</Button>
-        <Button onClick={() => onGlyphLoaded(TestGlyph)}>Test Glyph</Button>
-    </div>)
-}
+  const [savedGlyphs, updateSavedGlyphs] = useLocalStorage<
+    GlyphArrangementModel[]
+  >("SavedGlyphs", [Invisibility, SleepMist, SafetyHover, TestGlyph]);
+  const [dialogueOpen, setDialogueOpen] = useState(false);
 
-export default SavedGlyphMenu
+  function saveGlyph() {
+    updateSavedGlyphs([...savedGlyphs, glyphArrangement]);
+  }
+
+  function removeGlyph() {
+    updateSavedGlyphs(
+      savedGlyphs.filter((x) => x.Name !== glyphArrangement.Name)
+    );
+    if (saveGlyph.length > 0) {
+      loadGlyphs(savedGlyphs[0]);
+    }
+  }
+
+  function onDialogueClose(name: string | null) {
+    setDialogueOpen(false);
+
+    if (!name) {
+      return;
+    }
+
+    var glyphToLoad = savedGlyphs.find((x) => x.Name === name);
+    if (glyphToLoad) {
+      loadGlyphs(glyphToLoad);
+    }
+  }
+
+  return (
+    <>
+      <Button onClick={() => setDialogueOpen(true)}>Load</Button>
+      <LoadingGlyphDialog
+        open={dialogueOpen}
+        savedGlyphs={savedGlyphs}
+        onClose={onDialogueClose}
+      />
+      <Button onClick={() => saveGlyph()}>Save</Button>
+      <Button onClick={() => removeGlyph()}>Delete</Button>
+    </>
+  );
+};
+
+export default SavedGlyphMenu;

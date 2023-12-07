@@ -1,0 +1,29 @@
+<svg viewBox="-275 -275 550 550" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" class="glyph ice">
+	<!-- <defs>
+		<filter id="softGlowIce" height="300%" width="300%" x="-75%" y="-75%">
+			<feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+			<feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
+			<feFlood flood-color="rgb(0,186,255)" result="glowColor" />
+			<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+			<feMerge>
+				<feMergeNode in="softGlow_colored" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs> -->
+	<g filter="url(#softGlowIce)"  stroke="black">
+		<circle cx="0" cy="0" r="250" fill='white' />
+		<circle cx="0" cy="0" r="200" />
+		<line x1="-180" y1="80" x2="180" y2="80" />
+		<!-- crossbar -->
+		<line x1="0" y1="80" x2="0" y2="-200" />
+		<!-- center -->
+		<polyline points="0 80 -70 -100 0 -200 70 -100 0 80">
+		</polyline>
+		<!-- kite -->
+		<path d="M -190 40 Q -100 -20 0 -20 Q 100 -20 190 40" />
+		<!-- bend -->
+		<polyline points="0 80 -20 100 0 120 20 100 0 80" />
+		<!-- bottom square -->
+	</g>
+</svg>

@@ -1,0 +1,33 @@
+<svg viewBox="-275 -275 550 550" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" class="glyph light">
+	<!--
+	<defs>
+	<filter id="softGlowLight" height="300%" width="300%" x="-75%" y="-75%">
+	<feMorphology operator="dilate" radius="4" in="SourceAlpha" result="thicken" />
+	<feGaussianBlur in="thicken" stdDeviation="10" result="blurred" />
+	<feFlood flood-color="rgb(186,186,255)" result="glowColor" />
+	<feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+	<feMerge>
+	<feMergeNode in="softGlow_colored" />
+	<feMergeNode in="SourceGraphic" />
+	</feMerge>
+	</filter>
+	</defs>
+	-->
+	<g filter="url(#softGlowLight)" stroke="black">
+		<circle cx="0" cy="0" r="250" fill='white' />
+		<circle cx="0" cy="0" r="200" />	
+		<!-- crossbar -->
+		<polyline points="-180 80 0 -50 180 80">
+		</polyline>
+		<polyline points="-39 -100 0 -200 39 -100">
+		</polyline>
+		<circle cx="0" cy="-90" r="40" />
+		<!-- hat -->
+		<line x1="0" y1="-50" x2="0" y2="200" />
+		<!-- center -->
+		<line x1="-180" y1="80" x2="180" y2="80" />
+		<!-- two lines -->
+		<line x1="-30" y1="15" x2="30" y2="-10" />
+		<line x1="-30" y1="40" x2="30" y2="15" />
+	</g>
+</svg>
