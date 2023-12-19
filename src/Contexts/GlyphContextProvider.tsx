@@ -231,11 +231,11 @@ function glyphsReducer(
       return {
         ...glyphs,
         Rings: glyphs.Rings?.map((ring) => {
-          if (ring.Id !== action.ringId) return ring;
+          if (ring.Id !== action.ringId) {
+            return ring;
+          }
 
-          return {
-            ...ring,
-          };
+          return action.ring;
         }),
       };
     }
