@@ -148,18 +148,18 @@ function glyphsReducer(
 ): GlyphArrangementModel {
   switch (action.type) {
     case "AddRing": {
-      const rings = glyphs.Rings ?? [];
+      const rings = glyphs.rings ?? [];
       const newId =
-        rings.length > 0 ? Math.max(...rings.map((x) => x.Id)) + 1 : 1;
+        rings.length > 0 ? Math.max(...rings.map((x) => x.id)) + 1 : 1;
 
       return {
         ...glyphs,
-        Rings: [
+        rings: [
           ...rings,
           {
-            Id: newId,
-            Nodes: [],
-            Offset: 0,
+            id: newId,
+            nodes: [],
+            offset: 0,
           },
         ],
       };
@@ -167,36 +167,36 @@ function glyphsReducer(
     case "DeleteRing": {
       return {
         ...glyphs,
-        Rings: glyphs.Rings?.filter((ring) => ring.Id !== action.ringId),
+        rings: glyphs.rings?.filter((ring) => ring.id !== action.ringId),
       };
     }
     case "Load": {
       return action.model;
     }
     case "AddNode": {
-      const nodes = glyphs.Rings!.find((x) => x.Id === action.ringId)!.Nodes;
+      const nodes = glyphs.rings!.find((x) => x.id === action.ringId)!.nodes;
       const newId: number =
-        nodes.length > 0 ? Math.max(...nodes.map((x) => x.Id)) + 1 : 1;
+        nodes.length > 0 ? Math.max(...nodes.map((x) => x.id)) + 1 : 1;
       return {
         ...glyphs,
-        Rings: glyphs.Rings!.map((ring) => ({
+        rings: glyphs.rings!.map((ring) => ({
           ...ring,
           Nodes:
-            ring.Id !== action.ringId
-              ? ring.Nodes
-              : [...ring.Nodes, { Id: newId, Type: action.glyphType }],
+            ring.id !== action.ringId
+              ? ring.nodes
+              : [...ring.nodes, { id: newId, type: action.glyphType }],
         })),
       };
     }
     case "UpdateNode": {
       return {
         ...glyphs,
-        Rings: glyphs.Rings?.map((ring) => {
+        rings: glyphs.rings?.map((ring) => {
           return {
             ...ring,
-            Nodes: ring.Nodes.map((node) => {
-              if (node.Id === action.glyphId && ring.Id === action.ringId) {
-                return { ...node, Type: action.glyphType };
+            Nodes: ring.nodes.map((node) => {
+              if (node.id === action.glyphId && ring.id === action.ringId) {
+                return { ...node, type: action.glyphType };
               }
               return node;
             }),
@@ -207,12 +207,12 @@ function glyphsReducer(
     case "DeleteNode": {
       return {
         ...glyphs,
-        Rings: glyphs.Rings?.map((ring) => {
+        rings: glyphs.rings?.map((ring) => {
           return {
             ...ring,
-            Nodes: ring.Nodes.filter(
+            Nodes: ring.nodes.filter(
               (node) =>
-                !(node.Id === action.glyphId && ring.Id === action.ringId)
+                !(node.id === action.glyphId && ring.id === action.ringId)
             ),
           };
         }),
@@ -221,17 +221,17 @@ function glyphsReducer(
     case "UpdateCenter": {
       return {
         ...glyphs,
-        CenterGlyph: {
-          ...glyphs.CenterGlyph!,
-          Type: action.glyphType,
+        centerGlyph: {
+          ...glyphs.centerGlyph!,
+          type: action.glyphType,
         },
       };
     }
     case "UpdateRing": {
       return {
         ...glyphs,
-        Rings: glyphs.Rings?.map((ring) => {
-          if (ring.Id !== action.ringId) {
+        rings: glyphs.rings?.map((ring) => {
+          if (ring.id !== action.ringId) {
             return ring;
           }
 
@@ -242,7 +242,7 @@ function glyphsReducer(
     case "UpdateName": {
       return {
         ...glyphs,
-        Name: action.name,
+        name: action.name,
       };
     }
     default:

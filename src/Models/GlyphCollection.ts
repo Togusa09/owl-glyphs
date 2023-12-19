@@ -1,18 +1,19 @@
 import { GlyphType } from "./GlyphType";
 
 export interface GlyphArrangementModel {
-  Name: string;
-  Rings?: GlyphRingModel[];
-  CenterGlyph?: GlyphNodeModel;
+  name: string;
+  rings?: GlyphRingModel[];
+  centerGlyph?: GlyphNodeModel;
+  editable: boolean;
 }
 
 export interface GlyphRingModel {
-  Id: number;
-  Nodes: GlyphNodeModel[];
-  Offset: number;
+  id: number;
+  nodes: GlyphNodeModel[];
+  offset: number;
 }
 
 export interface GlyphNodeModel {
-  Id: number;
-  Type: GlyphType;
+  id: number;
+  type: GlyphType;
 }

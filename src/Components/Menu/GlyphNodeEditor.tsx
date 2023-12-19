@@ -11,10 +11,10 @@ type GlyphNodeEditorProps = {
     onRemove: () => void
 }
 
-export const GlyphNodeEditor = ({value, onUpdate, onRemove}: GlyphNodeEditorProps) => (<Fragment key={value.Id}>
+export const GlyphNodeEditor = ({value, onUpdate, onRemove}: GlyphNodeEditorProps) => (<Fragment key={value.id}>
     <Grid item xs={4} sx={editorRow}></Grid>
     <Grid item xs={4} sx={editorRow}>
-        <GlyphSelector value={value.Type} 
+        <GlyphSelector value={value.type} 
         onChange={(glyph) => 
             onUpdate(glyph)
         } />

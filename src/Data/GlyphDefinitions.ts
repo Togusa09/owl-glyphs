@@ -2,71 +2,75 @@ import { GlyphArrangementModel } from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
 export const Invisibility: GlyphArrangementModel = {
-  Name: "Invisibility",
-  CenterGlyph: { Id: 1, Type: GlyphType.Light },
-  Rings: [
+  name: "Invisibility",
+  editable: false,
+  centerGlyph: { id: 1, type: GlyphType.Light },
+  rings: [
     {
-      Id: 1,
-      Offset: -45,
-      Nodes: [
-        { Id: 2, Type: GlyphType.Blank },
-        { Id: 3, Type: GlyphType.Ice },
-        { Id: 4, Type: GlyphType.Ice },
-        { Id: 5, Type: GlyphType.Light },
+      id: 1,
+      offset: -45,
+      nodes: [
+        { id: 2, type: GlyphType.Blank },
+        { id: 3, type: GlyphType.Ice },
+        { id: 4, type: GlyphType.Ice },
+        { id: 5, type: GlyphType.Light },
       ],
     },
   ],
 };
 
 export const SafetyHover: GlyphArrangementModel = {
-  Name: "Safety Hover",
-  CenterGlyph: { Id: 1, Type: GlyphType.Light },
-  Rings: [
+  name: "Safety Hover",
+  editable: false,
+  centerGlyph: { id: 1, type: GlyphType.Light },
+  rings: [
     {
-      Offset: -45,
-      Id: 1,
-      Nodes: [
-        { Id: 2, Type: GlyphType.Ice },
-        { Id: 3, Type: GlyphType.Fire },
+      offset: -45,
+      id: 1,
+      nodes: [
+        { id: 2, type: GlyphType.Ice },
+        { id: 3, type: GlyphType.Fire },
       ],
     },
   ],
 };
 
 export const SleepMist: GlyphArrangementModel = {
-  Name: "Sleep Mist",
-  Rings: [
+  name: "Sleep Mist",
+  editable: false,
+  rings: [
     {
-      Id: 1,
-      Nodes: [
-        { Id: 1, Type: GlyphType.Ice },
-        { Id: 2, Type: GlyphType.Fire },
+      id: 1,
+      nodes: [
+        { id: 1, type: GlyphType.Ice },
+        { id: 2, type: GlyphType.Fire },
       ],
-      Offset: 0,
+      offset: 0,
     },
   ],
 };
 
 export const TestGlyph: GlyphArrangementModel = {
-  Name: "Test Glyph",
-  CenterGlyph: { Id: 1, Type: GlyphType.Fire },
-  Rings: [
+  name: "Test Glyph",
+  editable: false,
+  centerGlyph: { id: 1, type: GlyphType.Fire },
+  rings: [
     {
-      Id: 1,
-      Offset: 0,
-      Nodes: [
-        { Id: 2, Type: GlyphType.Fire },
-        { Id: 3, Type: GlyphType.Ice },
-        { Id: 4, Type: GlyphType.Light },
-        { Id: 5, Type: GlyphType.Plant },
+      id: 1,
+      offset: 0,
+      nodes: [
+        { id: 2, type: GlyphType.Fire },
+        { id: 3, type: GlyphType.Ice },
+        { id: 4, type: GlyphType.Light },
+        { id: 5, type: GlyphType.Plant },
       ],
     },
     {
-      Id: 2,
-      Offset: 0,
-      Nodes: [
-        { Id: 6, Type: GlyphType.Fire },
-        { Id: 7, Type: GlyphType.Plant },
+      id: 2,
+      offset: 0,
+      nodes: [
+        { id: 6, type: GlyphType.Fire },
+        { id: 7, type: GlyphType.Plant },
       ],
     },
   ],

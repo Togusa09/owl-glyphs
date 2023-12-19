@@ -25,7 +25,7 @@ export const SavedGlyphMenu = () => {
 
   function removeGlyph() {
     updateSavedGlyphs(
-      savedGlyphs.filter((x) => x.Name !== glyphArrangement.Name)
+      savedGlyphs.filter((x) => x.name !== glyphArrangement.name)
     );
     if (saveGlyph.length > 0) {
       loadGlyphs(savedGlyphs[0]);
@@ -39,7 +39,7 @@ export const SavedGlyphMenu = () => {
       return;
     }
 
-    var glyphToLoad = savedGlyphs.find((x) => x.Name === name);
+    var glyphToLoad = savedGlyphs.find((x) => x.name === name);
     if (glyphToLoad) {
       loadGlyphs(glyphToLoad);
     }

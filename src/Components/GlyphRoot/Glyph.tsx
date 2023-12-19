@@ -84,7 +84,7 @@ export const Glyph = ({ glyphNode, x, y, scale }: Props) => {
   const definedScale = scale ?? 0.2;
 
   const getGlyph = () => {
-    switch (glyphNode.Type) {
+    switch (glyphNode.type) {
       case GlyphType.Fire:
         return <FireGlyph x={x} y={y} scale={definedScale}></FireGlyph>;
       case GlyphType.Ice:
