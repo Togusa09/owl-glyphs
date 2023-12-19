@@ -48,7 +48,7 @@ export const SavedGlyphMenu = () => {
 
   function canSave() {
     const glyphToReplace = savedGlyphs.find(
-      (x) => x.name == glyphArrangement.name
+      (x) => x.name === glyphArrangement.name
     );
     return glyphToReplace ? glyphToReplace.editable : true;
   }

@@ -181,7 +181,7 @@ function glyphsReducer(
         ...glyphs,
         rings: glyphs.rings!.map((ring) => ({
           ...ring,
-          Nodes:
+          nodes:
             ring.id !== action.ringId
               ? ring.nodes
               : [...ring.nodes, { id: newId, type: action.glyphType }],
@@ -194,7 +194,7 @@ function glyphsReducer(
         rings: glyphs.rings?.map((ring) => {
           return {
             ...ring,
-            Nodes: ring.nodes.map((node) => {
+            nodes: ring.nodes.map((node) => {
               if (node.id === action.glyphId && ring.id === action.ringId) {
                 return { ...node, type: action.glyphType };
               }
@@ -210,7 +210,7 @@ function glyphsReducer(
         rings: glyphs.rings?.map((ring) => {
           return {
             ...ring,
-            Nodes: ring.nodes.filter(
+            nodes: ring.nodes.filter(
               (node) =>
                 !(node.id === action.glyphId && ring.id === action.ringId)
             ),
@@ -235,7 +235,7 @@ function glyphsReducer(
             return ring;
           }
 
-          return action.ring;
+          return {...action.ring};
         }),
       };
     }
