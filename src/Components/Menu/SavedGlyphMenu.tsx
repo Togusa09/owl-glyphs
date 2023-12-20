@@ -17,7 +17,7 @@ export const SavedGlyphMenu = () => {
   const [savedGlyphs, updateSavedGlyphs] = useLocalStorage<
     GlyphArrangementModel[]
   >("SavedGlyphs", [Invisibility, SleepMist, SafetyHover, TestGlyph]);
-  
+
   const [dialogueOpen, setDialogueOpen] = useState(false);
 
   function saveGlyph() {

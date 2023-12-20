@@ -14,7 +14,8 @@ const GlyphRenderer = () => {
 
   let rings;
   if (glyphArrangement.rings) {
-    var ringSpacing = (glyphRingDiameter - centerOffset) / glyphArrangement.rings.length;
+    var ringSpacing =
+      (glyphRingDiameter - centerOffset) / glyphArrangement.rings.length;
     rings = glyphArrangement.rings.map((x, i) => {
       return (
         <GlyphRing

@@ -235,7 +235,7 @@ function glyphsReducer(
             return ring;
           }
 
-          return {...action.ring};
+          return { ...action.ring };
         }),
       };
     }
