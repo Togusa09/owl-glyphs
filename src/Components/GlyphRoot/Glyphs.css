@@ -17,11 +17,6 @@ main {
   height: 500px;
 }
 
-.glyphs * {
-  vector-effect: non-scaling-stroke;
-}
-
-/* .glyph > svg circle {} */
 .glyph line,
 .glyph polyline,
 .glyph path {
