@@ -11,6 +11,10 @@ main {
   align-content: stretch;
 }
 
+.glyphs * {
+  vector-effect: non-scaling-stroke;
+}
+
 .glyph {
   /* Using these to resize the glyphs */
   width: 500px;

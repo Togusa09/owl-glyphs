@@ -27,7 +27,6 @@ export const Glyph = ({ glyphNode, x, y, scale }: GlyphProps) => {
       stroke: "black",
       strokeWidth: "3px",
       fill: "none",
-      vectorEffects:"non-scaling-stroke",
     };
 
     switch (glyphNode.type) {

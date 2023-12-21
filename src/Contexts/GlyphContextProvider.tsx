@@ -8,7 +8,6 @@ import {
 import { TestGlyph } from "../Data/GlyphDefinitions";
 import {
   GlyphArrangementModel,
-  GlyphRingModel,
 } from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
