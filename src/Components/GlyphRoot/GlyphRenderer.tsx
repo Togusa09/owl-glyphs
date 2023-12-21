@@ -13,18 +13,19 @@ const GlyphRenderer = () => {
   const centerOffset = 30;
 
   let rings;
-  if (glyphArrangement.Rings) {
-    var ringSpacing = (glyphRingDiameter - centerOffset) / glyphArrangement.Rings.length;
-    rings = glyphArrangement.Rings.map((x, i) => {
+  if (glyphArrangement.rings) {
+    var ringSpacing =
+      (glyphRingDiameter - centerOffset) / glyphArrangement.rings.length;
+    rings = glyphArrangement.rings.map((x, i) => {
       return (
         <GlyphRing
-          key={x.Id}
-          glyphNodes={x.Nodes}
+          key={x.id}
+          glyphNodes={x.nodes}
           size={(i + 1) * ringSpacing + centerOffset}
           x={halfSize}
           y={halfSize}
-          offset={x.Offset}
-          totalRings={glyphArrangement.Rings!.length}
+          offset={x.offset}
+          totalRings={glyphArrangement.rings!.length}
         ></GlyphRing>
       );
     });
@@ -48,15 +49,15 @@ const GlyphRenderer = () => {
         className="glyphs"
       >
         <rect width="100%" height="100%" fill="white"></rect>
-        {glyphArrangement.CenterGlyph && (
+        {glyphArrangement.centerGlyph && (
           <Glyph
-            glyphNode={glyphArrangement.CenterGlyph}
+            glyphNode={glyphArrangement.centerGlyph}
             x={halfSize}
             y={halfSize}
             scale={0.6}
           ></Glyph>
         )}
-        {glyphArrangement.Rings && rings}
+        {glyphArrangement.rings && rings}
       </svg>
     </Box>
   );

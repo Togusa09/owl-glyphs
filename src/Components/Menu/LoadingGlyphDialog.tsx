@@ -25,9 +25,9 @@ export default function LoadingGlyphDialog({
       <List>
         {savedGlyphs.map((glyph) => {
           return (
-            <ListItem disableGutters key={glyph.Name}>
-              <ListItemButton onClick={() => onClose(glyph.Name)}>
-                <ListItemText primary={glyph.Name} />
+            <ListItem disableGutters key={glyph.name}>
+              <ListItemButton onClick={() => onClose(glyph.name)}>
+                <ListItemText primary={glyph.name} />
               </ListItemButton>
             </ListItem>
           );

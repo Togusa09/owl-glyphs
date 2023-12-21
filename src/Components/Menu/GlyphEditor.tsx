@@ -15,14 +15,14 @@ export const GlyphEditor = () => {
     glyphArrangement,
     addRing,
     deleteRing,
-    updateRing,
+    setRingOffset,
     addNode,
     deleteNode,
     updateNode,
     updateCenterNode,
     updateName,
   } = useGlyphContext();
-  var centerGlyph = glyphArrangement.CenterGlyph ?? { Type: GlyphType.Blank };
+  var centerGlyph = glyphArrangement.centerGlyph ?? { type: GlyphType.Blank };
 
   return (
     <>
@@ -32,7 +32,8 @@ export const GlyphEditor = () => {
         </Grid>
         <Grid item xs={8} sx={editorRow}>
           <TextField
-            value={glyphArrangement.Name}
+            fullWidth
+            value={glyphArrangement.name}
             onChange={(e) => updateName(e.target.value)}
           />
         </Grid>
@@ -41,25 +42,25 @@ export const GlyphEditor = () => {
         </Grid>
         <Grid item xs={4} sx={editorRow}>
           <GlyphSelector
-            value={centerGlyph.Type}
+            value={centerGlyph.type}
             onChange={updateCenterNode}
           ></GlyphSelector>
         </Grid>
         <Grid item xs={4} sx={editorRow} />
-        {glyphArrangement.Rings &&
-          glyphArrangement.Rings.map((r, ri) => {
+        {glyphArrangement.rings &&
+          glyphArrangement.rings.map((r, ri) => {
             return (
               <GlyphRingEditor
                 value={r}
-                key={r.Id}
+                key={r.id}
                 index={ri}
-                onUpdate={(updatedRing) => updateRing(r.Id, updatedRing)}
-                onAddNode={(glyphType) => addNode(r.Id, glyphType)}
-                onRemoveNode={(glyphId) => deleteNode(r.Id, glyphId)}
+                onOffsetChange={(offset) => setRingOffset(r.id, offset)}
+                onAddNode={(glyphType) => addNode(r.id, glyphType)}
+                onRemoveNode={(glyphId) => deleteNode(r.id, glyphId)}
                 onUpdateNode={(glyphId, glyphType) =>
-                  updateNode(r.Id, glyphId, glyphType)
+                  updateNode(r.id, glyphId, glyphType)
                 }
-                onRemove={() => deleteRing(r.Id)}
+                onRemove={() => deleteRing(r.id)}
               />
             );
           })}

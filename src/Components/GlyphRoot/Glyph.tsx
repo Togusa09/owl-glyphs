@@ -5,94 +5,39 @@ import { ReactComponent as FireGlyphSvg } from "../../Images/Fire.svg";
 import { ReactComponent as IceGlyphSvg } from "../../Images/Ice.svg";
 import { ReactComponent as PlantGlyphSvg } from "../../Images/Plant.svg";
 
-type Props = {
+// Glyph svg code taken from https://codepen.io/jrcharney/pen/QWvGqgm
+
+type GlyphProps = {
   glyphNode: GlyphNodeModel;
   scale?: number;
   x: number;
   y: number;
 };
 
-// Glyph svg code taken from https://codepen.io/jrcharney/pen/QWvGqgm
-
-type ChildProps = {
-  x: number;
-  y: number;
-  scale: number;
-};
-
-export const LightGlyph = ({ x, y, scale }: ChildProps) => {
-  const width = 500 * scale;
-  return (
-    <LightGlyphSvg
-      x={x - width / 2}
-      y={y - width / 2}
-      width={width}
-      height={width}
-      stroke="black"
-      strokeWidth="3px"
-      fill="none"
-    />
-  );
-};
-
-export const FireGlyph = ({ x, y, scale }: ChildProps) => {
-  const width = 500 * scale;
-  return (
-    <FireGlyphSvg
-      x={x - width / 2}
-      y={y - width / 2}
-      width={width}
-      height={width}
-      stroke="black"
-      strokeWidth="3px"
-      fill="none"
-    />
-  );
-};
-
-export const IceGlyph = ({ x, y, scale }: ChildProps) => {
-  const width = 500 * scale;
-  return (
-    <IceGlyphSvg
-      x={x - width / 2}
-      y={y - width / 2}
-      width={width}
-      height={width}
-      stroke="black"
-      strokeWidth="3px"
-      fill="none"
-    />
-  );
-};
-
-export const PlantGlyph = ({ x, y, scale }: ChildProps) => {
-  const width = 500 * scale;
-  return (
-    <PlantGlyphSvg
-      x={x - width / 2}
-      y={y - width / 2}
-      width={width}
-      height={width}
-      stroke="black"
-      strokeWidth="3px"
-      fill="none"
-    />
-  );
-};
-
-export const Glyph = ({ glyphNode, x, y, scale }: Props) => {
+export const Glyph = ({ glyphNode, x, y, scale }: GlyphProps) => {
   const definedScale = scale ?? 0.2;
+  const width = 500 * definedScale;
 
   const getGlyph = () => {
-    switch (glyphNode.Type) {
+    const glyphAttributes = {
+      x: x - width / 2,
+      y: y - width / 2,
+      width: width,
+      height: width,
+      stroke: "black",
+      strokeWidth: "3px",
+      fill: "none",
+    };
+
+    switch (glyphNode.type) {
       case GlyphType.Fire:
-        return <FireGlyph x={x} y={y} scale={definedScale}></FireGlyph>;
+        return <FireGlyphSvg {...glyphAttributes} />;
       case GlyphType.Ice:
-        return <IceGlyph x={x} y={y} scale={definedScale}></IceGlyph>;
+        return <IceGlyphSvg {...glyphAttributes} />;
       case GlyphType.Light:
-        return <LightGlyph x={x} y={y} scale={definedScale}></LightGlyph>;
+        return <LightGlyphSvg {...glyphAttributes} />;
       case GlyphType.Plant:
-        return <PlantGlyph x={x} y={y} scale={definedScale}></PlantGlyph>;
+        return <PlantGlyphSvg {...glyphAttributes} />;
       case GlyphType.Blank:
         return <></>;
     }

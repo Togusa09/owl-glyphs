@@ -11,7 +11,7 @@ type GlyphRingEditorProps = {
   onAddNode: (glyphType: GlyphType) => void;
   onUpdateNode: (glyphId: number, glyphType: GlyphType) => void;
   onRemoveNode: (glyphId: number) => void;
-  onUpdate: (model: GlyphRingModel) => void;
+  onOffsetChange: (offset: number) => void;
   onRemove: () => void;
 };
 
@@ -21,22 +21,19 @@ export const GlyphRingEditor = ({
   onAddNode,
   onUpdateNode,
   onRemoveNode,
-  onUpdate,
+  onOffsetChange,
   onRemove,
 }: GlyphRingEditorProps) => (
-  <Fragment key={value.Id}>
+  <Fragment key={value.id}>
     <Grid item xs={4} sx={editorRow}>
       Ring {index}
     </Grid>
     <Grid item xs={4} sx={editorRow}>
       <TextField
         type="number"
-        value={value.Offset}
+        value={value.offset}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          onUpdate({
-            ...value,
-            Offset: Number(event.target.value),
-          });
+          onOffsetChange(Number(event.target.value));
         }}
       />
     </Grid>
@@ -45,15 +42,15 @@ export const GlyphRingEditor = ({
         Remove
       </Button>
     </Grid>
-    {value.Nodes.map((n) => {
+    {value.nodes.map((n) => {
       return (
         <GlyphNodeEditor
           value={n}
-          key={n.Id}
+          key={n.id}
           onUpdate={(updatedGlyph) => {
-            onUpdateNode(n.Id, updatedGlyph);
+            onUpdateNode(n.id, updatedGlyph);
           }}
-          onRemove={() => onRemoveNode(n.Id)}
+          onRemove={() => onRemoveNode(n.id)}
         ></GlyphNodeEditor>
       );
     })}

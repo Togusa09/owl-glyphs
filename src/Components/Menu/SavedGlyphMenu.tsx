@@ -17,6 +17,7 @@ export const SavedGlyphMenu = () => {
   const [savedGlyphs, updateSavedGlyphs] = useLocalStorage<
     GlyphArrangementModel[]
   >("SavedGlyphs", [Invisibility, SleepMist, SafetyHover, TestGlyph]);
+
   const [dialogueOpen, setDialogueOpen] = useState(false);
 
   function saveGlyph() {
@@ -25,7 +26,7 @@ export const SavedGlyphMenu = () => {
 
   function removeGlyph() {
     updateSavedGlyphs(
-      savedGlyphs.filter((x) => x.Name !== glyphArrangement.Name)
+      savedGlyphs.filter((x) => x.name !== glyphArrangement.name)
     );
     if (saveGlyph.length > 0) {
       loadGlyphs(savedGlyphs[0]);
@@ -39,10 +40,17 @@ export const SavedGlyphMenu = () => {
       return;
     }
 
-    var glyphToLoad = savedGlyphs.find((x) => x.Name === name);
+    var glyphToLoad = savedGlyphs.find((x) => x.name === name);
     if (glyphToLoad) {
       loadGlyphs(glyphToLoad);
     }
+  }
+
+  function canSave() {
+    const glyphToReplace = savedGlyphs.find(
+      (x) => x.name === glyphArrangement.name
+    );
+    return glyphToReplace ? glyphToReplace.editable : true;
   }
 
   return (
@@ -53,8 +61,12 @@ export const SavedGlyphMenu = () => {
         savedGlyphs={savedGlyphs}
         onClose={onDialogueClose}
       />
-      <Button onClick={() => saveGlyph()}>Save</Button>
-      <Button onClick={() => removeGlyph()}>Delete</Button>
+      <Button onClick={() => saveGlyph()} disabled={!canSave()}>
+        Save
+      </Button>
+      <Button onClick={() => removeGlyph()} disabled={!canSave()}>
+        Delete
+      </Button>
     </>
   );
 };
