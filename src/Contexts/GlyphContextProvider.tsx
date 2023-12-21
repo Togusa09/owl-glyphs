@@ -16,16 +16,14 @@ type GlyphContextType = {
   glyphArrangement: GlyphArrangementModel;
   loadGlyphs: (model: GlyphArrangementModel) => void;
   addRing: () => void;
+  setRingOffset: (ringId: number, glyphType: number) => void;
   deleteRing: (ringId: number) => void;
-  updateRing: (ringId: number, ring: GlyphRingModel) => void;
   addNode: (ringId: number, glyphType: GlyphType) => void;
   deleteNode: (ringId: number, glyphId: number) => void;
   updateNode: (ringId: number, glyphId: number, glyphType: GlyphType) => void;
   updateCenterNode: (glyphType: GlyphType) => void;
   updateName: (name: string) => void;
 };
-
-export const CustomOrderContext = createContext<string | null>(null);
 
 export const GlyphContext = createContext<GlyphContextType | null>(null);
 
@@ -51,8 +49,8 @@ export default function GlyphContextProvider({
     const deleteRing = (ringId: number) => {
       dispatchGlyphs({ type: "DeleteRing", ringId });
     };
-    const updateRing = (ringId: number, ring: GlyphRingModel) => {
-      dispatchGlyphs({ type: "UpdateRing", ringId, ring });
+    const setRingOffset = (ringId: number, offset: number) => {
+      dispatchGlyphs({ type: "SetRingOffset", ringId, offset });
     };
     const addNode = (ringId: number, glyphType: GlyphType) => {
       dispatchGlyphs({ type: "AddNode", ringId, glyphType });
@@ -79,7 +77,7 @@ export default function GlyphContextProvider({
       loadGlyphs,
       addRing,
       deleteRing,
-      updateRing,
+      setRingOffset,
       addNode,
       updateNode,
       deleteNode,
@@ -113,9 +111,9 @@ type GlyphReducerActionModel =
       type: "AddRing";
     }
   | {
-      type: "UpdateRing";
+      type: "SetRingOffset";
       ringId: number;
-      ring: GlyphRingModel;
+      offset: number;
     }
   | {
       type: "AddNode";
@@ -227,7 +225,7 @@ function glyphsReducer(
         },
       };
     }
-    case "UpdateRing": {
+    case "SetRingOffset": {
       return {
         ...glyphs,
         rings: glyphs.rings?.map((ring) => {
@@ -235,7 +233,7 @@ function glyphsReducer(
             return ring;
           }
 
-          return { ...action.ring };
+          return { ...ring, offset: action.offset };
         }),
       };
     }

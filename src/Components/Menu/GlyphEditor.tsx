@@ -15,7 +15,7 @@ export const GlyphEditor = () => {
     glyphArrangement,
     addRing,
     deleteRing,
-    updateRing,
+    setRingOffset,
     addNode,
     deleteNode,
     updateNode,
@@ -54,7 +54,7 @@ export const GlyphEditor = () => {
                 value={r}
                 key={r.id}
                 index={ri}
-                onUpdate={(updatedRing) => updateRing(r.id, updatedRing)}
+                onOffsetChange={(offset) => setRingOffset(r.id, offset)}
                 onAddNode={(glyphType) => addNode(r.id, glyphType)}
                 onRemoveNode={(glyphId) => deleteNode(r.id, glyphId)}
                 onUpdateNode={(glyphId, glyphType) =>
