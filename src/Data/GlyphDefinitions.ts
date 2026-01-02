@@ -1,4 +1,5 @@
-import { GlyphArrangementModel } from "../Models/GlyphCollection";
+
+import type { GlyphArrangementModel } from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
 
 export const Invisibility: GlyphArrangementModel = {

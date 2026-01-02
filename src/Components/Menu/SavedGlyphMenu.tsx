@@ -6,10 +6,10 @@ import {
   SafetyHover,
 } from "../../Data/GlyphDefinitions";
 import Button from "@mui/material/Button";
-import { GlyphArrangementModel } from "../../Models/GlyphCollection";
 import useLocalStorage from "../../Hooks/useLocalStorage";
 import { useState } from "react";
 import LoadingGlyphDialog from "./LoadingGlyphDialog";
+import type { GlyphArrangementModel } from "../../Models/GlyphCollection";
 
 export const SavedGlyphMenu = () => {
   const { glyphArrangement, loadGlyphs } = useGlyphContext();

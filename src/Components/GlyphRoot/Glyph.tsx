@@ -1,9 +1,9 @@
-import { GlyphNodeModel } from "../../Models/GlyphCollection";
 import { GlyphType } from "../../Models/GlyphType";
-import { ReactComponent as LightGlyphSvg } from "../../Images/Light.svg";
-import { ReactComponent as FireGlyphSvg } from "../../Images/Fire.svg";
-import { ReactComponent as IceGlyphSvg } from "../../Images/Ice.svg";
-import { ReactComponent as PlantGlyphSvg } from "../../Images/Plant.svg";
+import LightGlyphSvg  from "../../Images/Light.svg?react";
+import FireGlyphSvg  from "../../Images/Fire.svg?react";
+import IceGlyphSvg  from "../../Images/Ice.svg?react";
+import PlantGlyphSvg from "../../Images/Plant.svg?react";
+import type { GlyphNodeModel } from "../../Models/GlyphCollection";
 
 // Glyph svg code taken from https://codepen.io/jrcharney/pen/QWvGqgm
 

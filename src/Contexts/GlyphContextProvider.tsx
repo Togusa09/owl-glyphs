@@ -1,15 +1,13 @@
 import {
-  ReactNode,
-  createContext,
+    createContext,
   useContext,
   useMemo,
   useReducer,
+  type ReactNode,
 } from "react";
 import { TestGlyph } from "../Data/GlyphDefinitions";
-import {
-  GlyphArrangementModel,
-} from "../Models/GlyphCollection";
 import { GlyphType } from "../Models/GlyphType";
+import type { GlyphArrangementModel } from "../Models/GlyphCollection";
 
 type GlyphContextType = {
   glyphArrangement: GlyphArrangementModel;

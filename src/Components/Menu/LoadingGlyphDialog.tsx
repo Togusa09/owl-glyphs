@@ -6,7 +6,8 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { GlyphArrangementModel } from "../../Models/GlyphCollection";
+import type { GlyphArrangementModel } from "../../Models/GlyphCollection";
+
 
 export interface LoadingGlyphDialogProps {
   open: boolean;

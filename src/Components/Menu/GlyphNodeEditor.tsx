@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { GlyphNodeModel } from "../../Models/GlyphCollection";
 import { editorRow } from "./GlyphEditor";
 import { Button, Grid } from "@mui/material";
 import GlyphSelector from "./GlyphSelector";
 import { GlyphType } from "../../Models/GlyphType";
+import type { GlyphNodeModel } from "../../Models/GlyphCollection";
 
 type GlyphNodeEditorProps = {
   value: GlyphNodeModel;

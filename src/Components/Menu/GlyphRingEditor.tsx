@@ -1,9 +1,9 @@
 import { Button, Grid, TextField } from "@mui/material";
-import { GlyphRingModel } from "../../Models/GlyphCollection";
 import { editorRow } from "./GlyphEditor";
 import { GlyphNodeEditor } from "./GlyphNodeEditor";
 import { Fragment } from "react";
 import { GlyphType } from "../../Models/GlyphType";
+import type { GlyphRingModel } from "../../Models/GlyphCollection";
 
 type GlyphRingEditorProps = {
   value: GlyphRingModel;

@@ -1,4 +1,5 @@
-import { GlyphNodeModel } from "../../Models/GlyphCollection";
+
+import type { GlyphNodeModel } from "../../Models/GlyphCollection";
 import Glyph from "./Glyph";
 
 type Props = {
